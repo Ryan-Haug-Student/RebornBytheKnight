@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     GameObject attackIndicator;
-    GameObject AHB; //AttackHitBox
 
     //public stats
     [Header("Player Stats")]
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Misc")]
     public MoveDirection moveDirection;
+    public GameObject AHB; //AttackHitBox || public so can be accessed by other scripts
 
     void Start()
     {
@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && canAttack)
             Attack();
-        
     }
 
     private void Move()
