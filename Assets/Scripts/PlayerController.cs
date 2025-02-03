@@ -68,16 +68,19 @@ public class PlayerController : MonoBehaviour
         //manage the attackhitbox rotation while attacking
         if (moveDirection == MoveDirection.UPRIGHT || moveDirection == MoveDirection.DOWNLEFT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, -45);
+
         else if (moveDirection == MoveDirection.UPLEFT || moveDirection == MoveDirection.DOWNRIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 45);
+
         else if (moveDirection == MoveDirection.LEFT || moveDirection == MoveDirection.RIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 90);
+
         else
             AHB.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         AHB.SetActive(true);
         Debug.Log("attacked");
-        Invoke("RemoveHitbox", attckCooldown * .2f);
+        Invoke("RemoveHitbox", attckCooldown * .1f);
         
         Invoke("ResetAttack", attckCooldown);
     }
@@ -90,6 +93,8 @@ public class PlayerController : MonoBehaviour
         AHB.SetActive(false);
     }
 
+
+
     private void DirectionControl(Vector2 futurePos)
     {
         switch (futurePos)
@@ -101,42 +106,42 @@ public class PlayerController : MonoBehaviour
 
             case Vector2 position when position.x == 0 && position.y > 0:
                 moveDirection = MoveDirection.UP;
-                attackIndicator.transform.position = this.transform.position + new Vector3(0, 1);
+                attackIndicator.transform.position = this.transform.position + new Vector3(0, .8f);
                 break;
 
             case Vector2 position when position.x > 0 && position.y > 0:
                 moveDirection = MoveDirection.UPRIGHT;
-                attackIndicator.transform.position = this.transform.position + new Vector3(1, 1);
+                attackIndicator.transform.position = this.transform.position + new Vector3(.8f, .8f);
                 break;
 
             case Vector2 position when position.x > 0 && position.y == 0:
                 moveDirection = MoveDirection.RIGHT;
-                attackIndicator.transform.position = this.transform.position + new Vector3(1, 0);
+                attackIndicator.transform.position = this.transform.position + new Vector3(.8f, 0);
                 break;
 
             case Vector2 position when position.x > 0 && position.y < 0:
                 moveDirection = MoveDirection.DOWNRIGHT;
-                attackIndicator.transform.position = this.transform.position + new Vector3(1, -1);
+                attackIndicator.transform.position = this.transform.position + new Vector3(.8f, -.8f);
                 break;
 
             case Vector2 position when position.x == 0 && position.y < 0:
                 moveDirection = MoveDirection.DOWN;
-                attackIndicator.transform.position = this.transform.position + new Vector3(0, -1);
+                attackIndicator.transform.position = this.transform.position + new Vector3(0, -.8f);
                 break;
 
             case Vector2 position when position.x < 0 && position.y < 0:
                 moveDirection = MoveDirection.DOWNLEFT;
-                attackIndicator.transform.position = this.transform.position + new Vector3(-1, -1);
+                attackIndicator.transform.position = this.transform.position + new Vector3(-.8f, -.8f);
                 break;
 
             case Vector2 position when position.x < 0 && position.y == 0:
                 moveDirection = MoveDirection.LEFT;
-                attackIndicator.transform.position = this.transform.position + new Vector3(-1, 0);
+                attackIndicator.transform.position = this.transform.position + new Vector3(-.8f, 0);
                 break;
 
             case Vector2 position when position.x < 0 && position.y > 0:
                 moveDirection = MoveDirection.UPLEFT;
-                attackIndicator.transform.position = this.transform.position + new Vector3(-1, 1);
+                attackIndicator.transform.position = this.transform.position + new Vector3(-.8f, .8f);
                 break;
         }
     }
