@@ -245,7 +245,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 7
+  m_LinearDrag: 6
   m_AngularDrag: 0.8
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
-  speed: 2.5
+  speed: 4
   damage: 1
   attckCooldown: 0.8
   canAttack: 1

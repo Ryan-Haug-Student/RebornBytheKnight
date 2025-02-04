@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
         futurePos = Vector2.zero;
     }
+    //MAKE FUNCTION TO LIMIT SPEED AND SET INITIAL FORCE HIGHER FOR QUICKER ACCEL
 
     private void Attack()
     {
