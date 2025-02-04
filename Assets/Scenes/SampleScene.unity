@@ -282,10 +282,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  speed: 0
+  speed: 0.9
   damage: 0
   player: {fileID: 0}
-  playerSword: {fileID: 0}
+  target: {fileID: 0}
 --- !u!212 &200676961
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.09, y: -3.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
-  speed: 4
+  speed: 3.6
   damage: 1
   attckCooldown: 0.8
   canAttack: 1
@@ -906,7 +906,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9, y: 7, z: 1}
+  m_LocalScale: {x: 12, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1211738187}
@@ -1126,10 +1126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  speed: 0
+  speed: 0.9
   damage: 0
   player: {fileID: 0}
-  playerSword: {fileID: 0}
+  target: {fileID: 0}
 --- !u!212 &1500323795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1192,7 +1192,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   point2: {fileID: 283146858}
   point3: {fileID: 69077776}
   point4: {fileID: 507968037}
-  speed: 3
+  speed: 2
   distance: 2
   movingOut: 1
 --- !u!1 &1915642858
@@ -1461,10 +1461,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  speed: 0
+  speed: 0.9
   damage: 0
   player: {fileID: 0}
-  playerSword: {fileID: 0}
+  target: {fileID: 0}
 --- !u!212 &1991929923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.09, y: 2.83, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

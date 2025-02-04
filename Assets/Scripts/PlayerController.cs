@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack && moveDirection != MoveDirection.STATIC)
             Attack();
     }
 
