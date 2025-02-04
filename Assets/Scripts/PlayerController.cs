@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour
 
         attackIndicator = GameObject.Find("AttackIndicator");
 
-        //this must be active at start to find object
-        AHB = GameObject.Find("AttackHitBox");
         AHB.SetActive(false);
     }
 

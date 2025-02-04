@@ -673,12 +673,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 5
-  speed: 3.6
+  speed: 1.2
   damage: 1
   attckCooldown: 0.8
   canAttack: 1
-  moveDirection: 0
-  AHB: {fileID: 0}
+  moveDirection: 8
+  AHB: {fileID: 1209498254}
 --- !u!212 &528812870
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -34,7 +34,6 @@ public class EnemyBase : MonoBehaviour
     
     void Update()
     {
-        //check if the target position is within x of the enemy position if it is freeze movement
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
 
@@ -43,7 +42,7 @@ public class EnemyBase : MonoBehaviour
         Debug.Log("Collided with:  " + collision.gameObject.name);
         if (collision.gameObject.name == "AttackHitBox")
         {
-            health -= (int)playerController.damage;
+            health -= playerController.damage;
             Debug.Log("Hit by player");
         }
         DeathCheck();
