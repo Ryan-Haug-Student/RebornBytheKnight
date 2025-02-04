@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 5
   speed: 2.5
-  damage: 5
+  damage: 1
   attckCooldown: 0.8
   canAttack: 1
   moveDirection: 0

@@ -16,7 +16,7 @@ public class EnemyBase : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
-        playerSword = GameObject.Find("AttackHitBox");
+        //playerSword = GameObject.Find();
     }
     
     void Update()
@@ -24,10 +24,10 @@ public class EnemyBase : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collided");
-        if (collision.collider.isTrigger)
+        Debug.Log("Collided with:  " + collision.gameObject.name);
+        if (collision.gameObject.name == "AttackHitBox")
         {
             health -= (int)playerController.damage;
             Debug.Log("Hit by player");
@@ -38,6 +38,6 @@ public class EnemyBase : MonoBehaviour
     private void DeathCheck()
     {
         if (this.health <= 0)
-            Destroy(this);
+            Destroy(gameObject);
     }
 }
