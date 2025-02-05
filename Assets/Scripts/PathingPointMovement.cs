@@ -33,7 +33,7 @@ public class PathingPointMovement : MonoBehaviour
             if (Vector3.Distance(point1.transform.position, playerPosition + new Vector3(0, -distance, 0)) < 0.1f)
             {
                 movingOut = false;
-                Debug.Log("Moving In");
+                //Debug.Log("Moving In");
             }
         }
 
@@ -49,7 +49,7 @@ public class PathingPointMovement : MonoBehaviour
             if (Vector3.Distance(point1.transform.position, playerPosition) < 0.01f)
             {
                 movingOut = true;
-                Debug.Log("Moving Out");
+                //Debug.Log("Moving Out");
             }
         }
     }

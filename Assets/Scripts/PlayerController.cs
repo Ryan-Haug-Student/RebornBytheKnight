@@ -8,9 +8,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     GameObject attackIndicator;
 
-    //public stats
     [Header("Player Stats")]
-    public float Health;
+    public float health;
     public float speed;
 
     public float damage;
@@ -73,8 +72,8 @@ public class PlayerController : MonoBehaviour
         else if (moveDirection == MoveDirection.LEFT || moveDirection == MoveDirection.RIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 90);
 
-        else
-            AHB.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //else
+        //    AHB.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         AHB.SetActive(true);
         Debug.Log("attacked");
@@ -97,10 +96,10 @@ public class PlayerController : MonoBehaviour
     {
         switch (futurePos)
         {
-            case Vector2 position when position == new Vector2(0, 0):
-                moveDirection = MoveDirection.STATIC;
-                attackIndicator.transform.position = this.transform.position;
-                break;
+            //case Vector2 position when position == new Vector2(0, 0):
+            //    moveDirection = MoveDirection.STATIC;
+            //    attackIndicator.transform.position = this.transform.position;
+            //    break;
 
             case Vector2 position when position.x == 0 && position.y > 0:
                 moveDirection = MoveDirection.UP;

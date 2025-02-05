@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &200676959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -672,8 +672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e839f0254c6bd4c92588a5c6941ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 5
-  speed: 1.2
+  health: 5
+  speed: 1.5
   damage: 1
   attckCooldown: 0.8
   canAttack: 1
@@ -1104,8 +1104,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1500323796}
   - component: {fileID: 1500323795}
-  - component: {fileID: 1500323794}
   - component: {fileID: 1500323797}
+  - component: {fileID: 1500323798}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -1113,23 +1113,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1500323794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500323793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95dc183252cd25441a6414b121b3a3a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  speed: 0.9
-  damage: 0
-  player: {fileID: 0}
-  target: {fileID: 0}
 --- !u!212 &1500323795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1243,6 +1226,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1500323798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500323793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a90399350e7dda49b209b954c56e233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  speed: 0
+  damage: 0
+  player: {fileID: 0}
+  target: {fileID: 0}
 --- !u!1 &1536178264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1991929921
 BoxCollider2D:
   m_ObjectHideFlags: 0

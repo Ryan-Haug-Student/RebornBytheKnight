@@ -14,9 +14,9 @@ public class EnemyBase : MonoBehaviour
     public GameObject player;
     public GameObject target;
 
-    PlayerController playerController;
+    protected PlayerController playerController;
 
-    void Start()
+    virtual protected void Start()
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
