@@ -48,22 +48,22 @@ public class PlayerController : MonoBehaviour
         Vector2 futurePos = Vector2.zero;
 
         if (Input.GetAxisRaw("Horizontal") != 0)
-            futurePos += new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime * 10, 0);
+            futurePos += new Vector2((Input.GetAxisRaw("Horizontal") * 10) * Time.deltaTime, 0);
         
         if (Input.GetAxisRaw("Vertical") != 0)
-            futurePos += new Vector2(0, Input.GetAxisRaw("Vertical") * Time.deltaTime * 10);
+            futurePos += new Vector2(0, (Input.GetAxisRaw("Vertical") * 10) * Time.deltaTime);
         
         //dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             canDash = false;
 
-            rb.AddForce(futurePos.normalized * speed * dashStrength, ForceMode2D.Impulse);
+            transform.Translate(futurePos.normalized * dashStrength * .2f);
             Invoke("ResetDash", dashCooldown);
         }
 
-
-        rb.AddForce(futurePos.normalized * speed);
+        
+        rb.velocity = (futurePos.normalized * speed);    
         DirectionControl(futurePos);
 
         futurePos = Vector2.zero;

@@ -37,8 +37,8 @@ public class EnemyBase : MonoBehaviour
     
     void Update()
     {
-        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        rb.velocity = ((target.transform.position - gameObject.transform.position).normalized * speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        //rb.velocity = ((target.transform.position - gameObject.transform.position).normalized * speed * Time.deltaTime); ---> not working bc its stupid <---
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
