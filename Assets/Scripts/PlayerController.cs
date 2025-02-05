@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         else if (moveDirection == MoveDirection.UPLEFT || moveDirection == MoveDirection.DOWNRIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 45);
 
-        else if (moveDirection == MoveDirection.LEFT || moveDirection == MoveDirection.RIGHT)
+        else        //if (moveDirection == MoveDirection.LEFT || moveDirection == MoveDirection.RIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 90);
 
         //else
@@ -96,6 +96,8 @@ public class PlayerController : MonoBehaviour
     {
         switch (futurePos)
         {
+            // use this for when you want a static position <---> deleted to make attacks always have a place to land
+            //
             //case Vector2 position when position == new Vector2(0, 0):
             //    moveDirection = MoveDirection.STATIC;
             //    attackIndicator.transform.position = this.transform.position;
