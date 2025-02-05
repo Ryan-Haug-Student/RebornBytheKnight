@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     GameObject attackIndicator;
+    GameObject AAI; //attack after image
+    SpriteRenderer attackSprite;
 
     [Header("Player Stats")]
     public float health;
@@ -27,9 +29,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         attackIndicator = GameObject.Find("AttackIndicator");
+        AAI = GameObject.Find("AttackAfterImage");
+
+        rb = GetComponent<Rigidbody2D>();
+        attackSprite = AAI.GetComponent<SpriteRenderer>();
 
         AHB.SetActive(false); //hide the hitbox and make it so enemys wont take dmg unless player attacks
     }
@@ -90,9 +94,15 @@ public class PlayerController : MonoBehaviour
         else
             AHB.transform.rotation = Quaternion.Euler(0, 0, 0);
 
+        //bc sprite doesnt follow the actual direction needed this flips the after image attack sprite as needed
+        if(moveDirection == MoveDirection.RIGHT || moveDirection == MoveDirection.DOWNRIGHT || moveDirection == MoveDirection.DOWN || moveDirection == MoveDirection.DOWNLEFT)
+            attackSprite.flipY = true;
+        else
+            attackSprite.flipY = false;
+
         AHB.SetActive(true);
         Debug.Log("attacked");
-        Invoke("RemoveHitbox", attckCooldown * .1f);
+        Invoke("RemoveHitbox", attckCooldown * .08f);
         
         Invoke("ResetAttack", attckCooldown);
     }
