@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             canDash = false;
 
-            transform.Translate(futurePos.normalized * dashStrength * .2f);
+            transform.Translate(futurePos.normalized * dashStrength * .25f);
             Invoke("ResetDash", dashCooldown);
         }
 

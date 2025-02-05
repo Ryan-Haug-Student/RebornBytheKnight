@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerSprite : MonoBehaviour
 {
@@ -24,6 +26,6 @@ public class PlayerSprite : MonoBehaviour
         else if (controller.moveDirection == PlayerController.MoveDirection.DOWNRIGHT || controller.moveDirection == PlayerController.MoveDirection.RIGHT || controller.moveDirection == PlayerController.MoveDirection.UPRIGHT)
         {
             sprite.flipX = false;
-        }
+        }  
     }
 }
