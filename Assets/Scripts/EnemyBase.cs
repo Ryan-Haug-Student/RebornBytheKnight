@@ -15,11 +15,14 @@ public class EnemyBase : MonoBehaviour
     public GameObject target;
 
     protected PlayerController playerController;
+    Rigidbody2D rb;
 
     virtual protected void Start()
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
+
+        rb = gameObject.GetComponent<Rigidbody2D>();
 
         int tempRandom = Random.Range(1, 5);
         if (tempRandom == 1)
@@ -34,7 +37,8 @@ public class EnemyBase : MonoBehaviour
     
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        rb.velocity = ((target.transform.position - gameObject.transform.position).normalized * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

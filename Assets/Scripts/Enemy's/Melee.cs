@@ -8,7 +8,7 @@ public class Melee : EnemyBase
     {
         health = 3;
         damage = 1;
-        speed = 0.8f;
+        speed = 1.2f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) //damaging player
