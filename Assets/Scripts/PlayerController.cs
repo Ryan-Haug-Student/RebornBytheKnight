@@ -11,16 +11,19 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]
     public float health;
     public float speed;
+    public float dashStrength;
+    public float dashCooldown;
 
     public float damage;
     public float attckCooldown;
 
     [Header("Bools")]
     public bool canAttack;
+    public bool canDash;
 
     [Header("Misc")]
     public MoveDirection moveDirection;
-    public GameObject AHB; //AttackHitBox || public so can be accessed by other scripts
+    public GameObject AHB; //AttackHitBox || public to be accessed by other scripts
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
         attackIndicator = GameObject.Find("AttackIndicator");
 
-        AHB.SetActive(false);
+        AHB.SetActive(false); //hide the hitbox and make it so enemys wont take dmg unless player attacks
     }
 
 
@@ -50,13 +53,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") != 0)
             futurePos += new Vector2(0, Input.GetAxisRaw("Vertical") * Time.deltaTime * 10);
         
+        //dash
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            canDash = false;
+
+            rb.AddForce(futurePos.normalized * speed * dashStrength, ForceMode2D.Impulse);
+            Invoke("ResetDash", dashCooldown);
+        }
+
 
         rb.AddForce(futurePos.normalized * speed);
         DirectionControl(futurePos);
 
         futurePos = Vector2.zero;
     }
-    //MAKE FUNCTION TO LIMIT SPEED AND SET INITIAL FORCE HIGHER FOR QUICKER ACCEL
+    private void ResetDash()
+    {
+        canDash = true;
+    }
 
     private void Attack()
     {
@@ -69,11 +84,11 @@ public class PlayerController : MonoBehaviour
         else if (moveDirection == MoveDirection.UPLEFT || moveDirection == MoveDirection.DOWNRIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 45);
 
-        else        //if (moveDirection == MoveDirection.LEFT || moveDirection == MoveDirection.RIGHT)
+        else if (moveDirection == MoveDirection.LEFT || moveDirection == MoveDirection.RIGHT)
             AHB.transform.rotation = Quaternion.Euler(0, 0, 90);
 
-        //else
-        //    AHB.transform.rotation = Quaternion.Euler(0, 0, 0);
+        else
+            AHB.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         AHB.SetActive(true);
         Debug.Log("attacked");
@@ -96,14 +111,12 @@ public class PlayerController : MonoBehaviour
     {
         switch (futurePos)
         {
-            // use this for when you want a static position <---> deleted to make attacks always have a place to land
-            //
-            //case Vector2 position when position == new Vector2(0, 0):
-            //    moveDirection = MoveDirection.STATIC;
-            //    attackIndicator.transform.position = this.transform.position;
-            //    break;
+        case Vector2 position when position == new Vector2(0, 0):
+            moveDirection = MoveDirection.STATIC;
+            attackIndicator.transform.position = this.transform.position;
+            break;
 
-            case Vector2 position when position.x == 0 && position.y > 0:
+        case Vector2 position when position.x == 0 && position.y > 0:
                 moveDirection = MoveDirection.UP;
                 attackIndicator.transform.position = this.transform.position + new Vector3(0, .8f);
                 break;
