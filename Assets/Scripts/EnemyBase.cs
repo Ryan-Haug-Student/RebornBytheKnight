@@ -34,20 +34,12 @@ public class EnemyBase : MonoBehaviour
         else
             target = GameObject.Find("P4");
     }
-    
-    void Update()
-    {
-        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        //rb.velocity = ((target.transform.position - gameObject.transform.position) * Time.deltaTime * speed * 50);
 
-        
-        
-        // Calculate direction vector
+    protected void Move()
+    {
         Vector2 direction = (target.transform.position - transform.position).normalized;
 
-        // Set the velocity based on the direction and speed
         rb.velocity = direction * speed;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
