@@ -33,7 +33,7 @@ public class Melee : EnemyBase
             Vector2 direction = (player.transform.position - transform.position).normalized;
 
             // Debug draw the ray (visible in Scene view)
-            Debug.DrawRay(transform.position, direction * attackDistance, Color.red, 0.1f);
+            Debug.DrawRay(transform.position, direction * attackDistance, Color.white, 0.1f);
 
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, // Origin of the ray
