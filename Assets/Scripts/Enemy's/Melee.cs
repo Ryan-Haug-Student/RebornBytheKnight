@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Melee : EnemyBase
 {
-    private bool canAttack;
-    private float attackDistance;
-    private int layerMask;
+    protected bool canAttack;
+    protected float attackDistance;
+    protected int layerMask;
 
-    private void Awake()
+    protected void Awake()
     {
         health = 3;
         damage = 1;

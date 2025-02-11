@@ -13,7 +13,7 @@ public class Ranged : EnemyBase
     {
         health = 2;
         damage = 1;
-        speed = .6f;
+        speed = 0;
         delay = 2;
 
         canAttack = true;       //layermasks are represented by bitmasks so << means shift the 1 bit over 6 positions to represent enemy layer
@@ -27,6 +27,7 @@ public class Ranged : EnemyBase
             canAttack = false;
 
             direction = (player.transform.position - transform.position);
+            Debug.Log("Ranged Decided on location");
 
             // Debug draw the ray (visible in Scene view)
             Debug.DrawRay(transform.position, direction, Color.red, 0.2f);
@@ -37,6 +38,8 @@ public class Ranged : EnemyBase
 
     private void Attack()
     {
+        Debug.Log("Ranged attacked");
+
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position, // Origin of the ray
             direction,          // where to shoot
@@ -44,7 +47,7 @@ public class Ranged : EnemyBase
             layerMask           // Layer mask to ignore the Brawler
         );
 
-        if (hit.collider.CompareTag("Player"))
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             playerController.health -= damage;
         }
