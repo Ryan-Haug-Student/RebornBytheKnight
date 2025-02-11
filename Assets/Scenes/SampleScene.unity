@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 528812872}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 1500323797}
   - component: {fileID: 1500323798}
   - component: {fileID: 1500323799}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brawler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
