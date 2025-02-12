@@ -71,8 +71,11 @@ public class PlayerController : MonoBehaviour
         }
 
         
-        rb.velocity = (futurePos.normalized * speed);    
-        DirectionControl(futurePos);
+        rb.velocity = (futurePos.normalized * speed);
+        
+        //stops the attack animation from changing direction mid animation
+        if (AHB.activeSelf == false)
+            DirectionControl(futurePos);
 
         futurePos = Vector2.zero;
     }
@@ -106,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         AHB.SetActive(true);
         Debug.Log("attacked");
-        Invoke("RemoveHitbox", attckCooldown * .08f);
+        Invoke("RemoveHitbox", attckCooldown * .12f);
         
         Invoke("ResetAttack", attckCooldown);
     }
