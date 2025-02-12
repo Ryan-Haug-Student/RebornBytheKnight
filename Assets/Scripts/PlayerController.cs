@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer attackSprite;
 
     [Header("Player Stats")]
+    public float maxHealth;
     public float health;
     public float speed;
     public float dashStrength;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
         attackSprite = AAI.GetComponent<SpriteRenderer>();
 
         AHB.SetActive(false); //hide the hitbox and make it so enemys wont take dmg unless player attacks
+
+        maxHealth = health;
     }
 
 
