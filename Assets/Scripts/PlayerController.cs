@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         AHB.SetActive(false); //hide the hitbox and make it so enemys wont take dmg unless player attacks
 
         maxHealth = health;
+        Mathf.Clamp(health, 0, maxHealth);
     }
 
 
