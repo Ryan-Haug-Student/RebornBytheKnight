@@ -6,8 +6,13 @@ public class Ranged : EnemyBase
 {
     private bool canAttack;
     private int layerMask;
+    private int OOBLayerMask;           // out of bounds layermask
     private Vector2 direction;
     private float delay;
+
+    private LineRenderer lineRenderer;
+    [SerializeField] GameObject SP;     //start point
+    [SerializeField] GameObject EP;     //end point
 
     private void Awake()
     {
@@ -16,8 +21,11 @@ public class Ranged : EnemyBase
         speed = 0;
         delay = 2;
 
-        canAttack = true;       //layermasks are represented by bitmasks so << means shift the 1 bit over 6 positions to represent enemy layer
-        layerMask = ~(1 << 6);  //the ~ is the bitwise not operator, telling the raycast to ignore everything BUT this
+        canAttack = true;           //layermasks are represented by bitmasks so << means shift the 1 bit over 6 positions to represent enemy layer
+        layerMask = ~(1 << 6);      //the ~ is the bitwise not operator, telling the raycast to ignore everything BUT this
+        OOBLayerMask = (1 << 7); 
+
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
@@ -30,14 +38,29 @@ public class Ranged : EnemyBase
             Debug.Log("Ranged Decided on location");
 
             // Debug draw the ray (visible in Scene view)
-            Debug.DrawRay(transform.position, direction, Color.red, 0.2f);
+            Debug.DrawRay(transform.position, direction, Color.red, 2f);
+            DrawLine();
 
-            Invoke("Attack", 1f); //make shoot after 1 second after aiming
+            Invoke("Attack", 2f); //make shoot after 2 second after aiming
         }
+    }
+
+    private void DrawLine()
+    {
+        SP.transform.position = transform.position;
+
+        RaycastHit2D endPointHit = Physics2D.Raycast(SP.transform.position, direction, 100, OOBLayerMask);
+        EP.transform.position = endPointHit.point;
+
+        lineRenderer.SetPosition(0, SP.transform.position);
+        lineRenderer.SetPosition(1, EP.transform.position);
+
+        lineRenderer.enabled = true;
     }
 
     private void Attack()
     {
+        lineRenderer.enabled = false;
         Debug.Log("Ranged attacked");
 
         RaycastHit2D hit = Physics2D.Raycast(
