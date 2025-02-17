@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -11,25 +12,41 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer attackSprite;
 
     [Header("Player Stats")]
-    public float maxHealth;
-    public float health;
-    public float speed;
-    public float dashStrength;
-    public float dashCooldown;
-
-    public float damage;
-    public float attckCooldown;
+    public static float maxHealth;
+    public static float health;
+    public static float speed;
+    public static float dashStrength;
+    public static float dashCooldown;
+            
+    public static float damage;
+    public static float attckCooldown;
 
     [Header("Bools")]
     public bool canAttack;
     public bool canDash;
+    static bool isFirstLoad = true;
 
     [Header("Misc")]
     public MoveDirection moveDirection;
     public GameObject AHB; //AttackHitBox || public to be accessed by other scripts
 
+    public static PlayerController Instance { get; private set; }
+
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Prevent duplicates
+        }
+
+        if (isFirstLoad)
+            SetStats();
+
         attackIndicator = GameObject.Find("AttackIndicator");
         AAI = GameObject.Find("AttackAfterImage");
 
@@ -39,9 +56,7 @@ public class PlayerController : MonoBehaviour
         AHB.SetActive(false); //hide the hitbox and make it so enemys wont take dmg unless player attacks
 
         maxHealth = health;
-        Mathf.Clamp(health, 0, maxHealth);
     }
-
 
     void Update()
     {
@@ -49,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && canAttack && moveDirection != MoveDirection.STATIC)
             Attack();
+
+        if(Input.GetKey(KeyCode.N)) { SceneManager.LoadScene("Stage2"); }
     }
 
     private void Move()
@@ -122,7 +139,18 @@ public class PlayerController : MonoBehaviour
         AHB.SetActive(false);
     }
 
+    private void SetStats()
+    {
+        isFirstLoad = false;
 
+        maxHealth = 5;
+        health = 5;
+        speed = 1.8f;
+        dashStrength = 5;
+        dashCooldown = 2;
+        damage = 1;
+        attckCooldown = 0.8f;
+}
 
     private void DirectionControl(Vector2 futurePos)
     {

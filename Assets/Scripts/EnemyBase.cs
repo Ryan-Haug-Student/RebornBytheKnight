@@ -14,13 +14,11 @@ public class EnemyBase : MonoBehaviour
     public GameObject player;
     public GameObject target;
 
-    protected PlayerController playerController;
     Rigidbody2D rb;
 
     virtual protected void Start()
     {
         player = GameObject.Find("Player");
-        playerController = player.GetComponent<PlayerController>();
 
         rb = gameObject.GetComponent<Rigidbody2D>();
 
@@ -47,7 +45,7 @@ public class EnemyBase : MonoBehaviour
         Debug.Log("Collided with:  " + collision.gameObject.name);
         if (collision.gameObject.name == "AttackHitBox")
         {
-            health -= playerController.damage;
+            health -= PlayerController.damage;
             Debug.Log("Hit by player");
         }
         DeathCheck();
