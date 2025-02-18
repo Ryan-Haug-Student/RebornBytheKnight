@@ -8,7 +8,7 @@ public class Tank : Melee
     {
         health = 5;
         damage = 2;
-        speed = .4f;
+        speed = .6f;
 
         canAttack = true;
         attackDistance = .8f;

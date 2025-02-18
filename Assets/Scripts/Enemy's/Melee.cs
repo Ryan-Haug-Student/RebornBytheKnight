@@ -12,7 +12,7 @@ public class Melee : EnemyBase
     {
         health = 3;
         damage = 1;
-        speed = .8f;
+        speed = 1f;
 
         canAttack = true;
         attackDistance = .5f;
