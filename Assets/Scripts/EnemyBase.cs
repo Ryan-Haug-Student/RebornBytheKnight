@@ -45,7 +45,7 @@ public class EnemyBase : MonoBehaviour
         Debug.Log("Collided with:  " + collision.gameObject.name);
         if (collision.gameObject.name == "AttackHitBox")
         {
-            health -= PlayerController.damage;
+            health -= PlayerController.Instance.damage;
             Debug.Log("Hit by player");
         }
         DeathCheck();

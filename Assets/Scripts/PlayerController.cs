@@ -12,19 +12,20 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer attackSprite;
 
     [Header("Player Stats")]
-    public static float maxHealth;
-    public static float health;
-    public static float speed;
-    public static float dashStrength;
-    public static float dashCooldown;
+    public float maxHealth;
+    public float health;
+    public float speed;
+    public float dashStrength;
+    public float dashCooldown;
             
-    public static float damage;
-    public static float attckCooldown;
+    public float damage;
+    public float attckCooldown;
 
     [Header("Bools")]
     public bool canAttack;
     public bool canDash;
-    static bool isFirstLoad = true;
+    bool isDashing;
+    bool isFirstLoad = true;
 
     [Header("Misc")]
     public MoveDirection moveDirection;
@@ -81,15 +82,16 @@ public class PlayerController : MonoBehaviour
         //dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            canDash = false;
+            canDash = false; isDashing = true;
 
-            transform.Translate(futurePos.normalized * dashStrength * .25f);
+            rb.velocity = futurePos * dashStrength * 100;
             Invoke("ResetDash", dashCooldown);
+            Invoke("StopDash", dashCooldown * .1f);
         }
 
-        
-        rb.velocity = (futurePos.normalized * speed);
-        
+        if (!isDashing)
+            rb.velocity = futurePos.normalized * speed;
+
         //stops the attack animation from changing direction mid animation
         if (AHB.activeSelf == false)
             DirectionControl(futurePos);
@@ -99,6 +101,10 @@ public class PlayerController : MonoBehaviour
     private void ResetDash()
     {
         canDash = true;
+    }
+    private void StopDash()
+    {
+        isDashing = false;
     }
 
     private void Attack()

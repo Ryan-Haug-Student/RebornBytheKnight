@@ -28,7 +28,7 @@ public class UI : MonoBehaviour
 
     void HealthBar()
     {
-        float target = PlayerController.health / PlayerController.maxHealth;
+        float target = PlayerController.Instance.health / PlayerController.Instance.maxHealth;
 
         // Update health bar scale
         health.transform.localScale = new Vector3(0.42f * target, 0.08f, 1);

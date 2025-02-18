@@ -17,8 +17,6 @@ public class PlayerSprite : MonoBehaviour
         
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-
-        
     }
 
 
@@ -38,6 +36,6 @@ public class PlayerSprite : MonoBehaviour
                        
         else
             animator.SetBool("Static", false);
-        
+
     }
 }

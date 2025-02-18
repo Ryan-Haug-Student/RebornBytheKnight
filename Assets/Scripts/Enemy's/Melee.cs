@@ -46,7 +46,7 @@ public class Melee : EnemyBase
             { 
                 if (hit.collider.CompareTag("Player"))
                 {
-                    PlayerController.health -= damage;
+                    PlayerController.Instance.health -= damage;
                     Debug.Log("enemy hit player");
                 }
             }

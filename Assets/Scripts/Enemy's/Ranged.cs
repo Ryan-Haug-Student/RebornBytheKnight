@@ -72,7 +72,7 @@ public class Ranged : EnemyBase
 
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
-            PlayerController.health -= damage;
+            PlayerController.Instance.health -= damage;
         }
 
         Invoke("ResetAttack", delay);
