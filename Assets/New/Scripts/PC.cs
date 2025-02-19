@@ -13,15 +13,21 @@ public class PC : MonoBehaviour
     public float dashStrength; //added to moveSpeed then applied
     public float dashCooldown;
 
+    public float damage;
+    public float attackCooldown; //max value of 2, 
+
     [Header("Bools")]
     public bool canDash = true;
+    public bool canAttack = true;
 
     [Header("Misc")]
     public MoveDirection direction;
+    public GameObject hitBox;
 
     // --private vars & gameObj references--
     private bool isFirstLoad = true;
     private bool isDashing = false;
+    private bool isAttacking = false;
 
     private Rigidbody2D rb;
 
@@ -47,7 +53,11 @@ public class PC : MonoBehaviour
     void Update()
     {
         Move();
-        DirectionControl();
+        if(!isAttacking)
+            DirectionControl();
+
+        if (canAttack && Input.GetKey(KeyCode.Space) && direction != MoveDirection.STATIC)
+            Attack();
     }
 
     // set default stats here -------------------
@@ -56,10 +66,13 @@ public class PC : MonoBehaviour
         isFirstLoad = false;
 
         //set stats to defaults
-        moveSpeed = 4;
+        moveSpeed = 3;
 
-        dashStrength = 6;
-        dashCooldown = 3;
+        dashStrength = 12;
+        dashCooldown = 4;
+
+        damage = 1;
+        attackCooldown = 1;
     }
 
     // begin control functions here -------------
@@ -78,7 +91,7 @@ public class PC : MonoBehaviour
             canDash = false;
             isDashing = true;
 
-            StartCoroutine(endDash());
+            StartCoroutine(EndDash());
         }
 
         //set velocity
@@ -87,13 +100,32 @@ public class PC : MonoBehaviour
         else
             rb.velocity = futurePos.normalized * (moveSpeed + dashStrength);
     }
-    private IEnumerator endDash()
+    private IEnumerator EndDash()
     {
-        yield return new WaitForSeconds(.08f);
+        yield return new WaitForSeconds(.1f);
         isDashing = false;
 
-        yield return new WaitForSeconds(dashCooldown - .08f);
+        yield return new WaitForSeconds(dashCooldown - .1f);
         canDash = true; //minus to account for dash duration
+    }
+
+    private void Attack()
+    {
+        canAttack = false;
+        isAttacking = true;
+
+        hitBox.SetActive(true);
+
+        StartCoroutine(EndAttack());
+    }
+    private IEnumerator EndAttack()
+    {
+        yield return new WaitForSeconds(.1f);
+        hitBox.SetActive(false);
+        isAttacking = false;
+
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     private void DirectionControl()
@@ -109,7 +141,7 @@ public class PC : MonoBehaviour
                 direction = MoveDirection.UP;
             else if (rb.velocityX > 0)
                 direction = MoveDirection.UPRIGHT;
-            else if (rb.velocityX < 0)
+            else
                 direction = MoveDirection.UPLEFT;
         }
 
@@ -119,11 +151,11 @@ public class PC : MonoBehaviour
                 direction = MoveDirection.DOWN;
             else if (rb.velocityX > 0)
                 direction = MoveDirection.DOWNRIGHT;
-            else if (rb.velocityX < 0)
+            else
                 direction = MoveDirection.DOWNLEFT;
         }
 
-        else if (rb.velocityX != 0)
+        else if (rb.velocityX != 0) //when not moving up or down
         {
             if (rb.velocityX > 0)
                 direction = MoveDirection.RIGHT;
