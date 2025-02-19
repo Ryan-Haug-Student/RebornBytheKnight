@@ -16,6 +16,9 @@ public class PC : MonoBehaviour
     [Header("Bools")]
     public bool canDash = true;
 
+    [Header("Misc")]
+    public MoveDirection direction;
+
     // --private vars & gameObj references--
     private bool isFirstLoad = true;
     private bool isDashing = false;
@@ -44,6 +47,7 @@ public class PC : MonoBehaviour
     void Update()
     {
         Move();
+        DirectionControl();
     }
 
     // set default stats here -------------------
@@ -54,8 +58,8 @@ public class PC : MonoBehaviour
         //set stats to defaults
         moveSpeed = 4;
 
-        dashStrength = 3f;
-        dashCooldown = 2;
+        dashStrength = 6;
+        dashCooldown = 3;
     }
 
     // begin control functions here -------------
@@ -85,10 +89,58 @@ public class PC : MonoBehaviour
     }
     private IEnumerator endDash()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.08f);
         isDashing = false;
 
-        yield return new WaitForSeconds(dashCooldown - .1f);
-        canDash = true; //minus .1 to count for dash duration
+        yield return new WaitForSeconds(dashCooldown - .08f);
+        canDash = true; //minus to account for dash duration
+    }
+
+    private void DirectionControl()
+    {
+        if (rb.velocityX == 0 && rb.velocityY == 0)
+        {
+            direction = MoveDirection.STATIC;
+        }
+
+        else if (rb.velocityY > 0) // when moving up
+        {
+            if (rb.velocityX == 0)
+                direction = MoveDirection.UP;
+            else if (rb.velocityX > 0)
+                direction = MoveDirection.UPRIGHT;
+            else if (rb.velocityX < 0)
+                direction = MoveDirection.UPLEFT;
+        }
+
+        else if (rb.velocityY < 0) // when moving down
+        {
+            if (rb.velocityX == 0)
+                direction = MoveDirection.DOWN;
+            else if (rb.velocityX > 0)
+                direction = MoveDirection.DOWNRIGHT;
+            else if (rb.velocityX < 0)
+                direction = MoveDirection.DOWNLEFT;
+        }
+
+        else if (rb.velocityX != 0)
+        {
+            if (rb.velocityX > 0)
+                direction = MoveDirection.RIGHT;
+            else
+                direction = MoveDirection.LEFT;
+        }
+    }
+    public enum MoveDirection
+    {
+        STATIC,
+        UP,
+        UPRIGHT,
+        RIGHT,
+        DOWNRIGHT,
+        DOWN,
+        DOWNLEFT,
+        LEFT,
+        UPLEFT
     }
 }
