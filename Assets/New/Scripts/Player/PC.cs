@@ -32,7 +32,7 @@ public class PC : MonoBehaviour
     private Rigidbody2D rb;
 
 
-    // end vars ---------------------------------
+    // start programming ------------------------
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -72,7 +72,7 @@ public class PC : MonoBehaviour
         dashCooldown = 4;
 
         damage = 1;
-        attackCooldown = 1;
+        attackCooldown = 1.5f;
     }
 
     // begin control functions here -------------
@@ -86,7 +86,7 @@ public class PC : MonoBehaviour
         futurePos *= Time.deltaTime;
 
         //dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && direction != MoveDirection.STATIC)
         {
             canDash = false;
             isDashing = true;
@@ -127,6 +127,8 @@ public class PC : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
+
+    // Direction stuff --------------------------
 
     private void DirectionControl()
     {
