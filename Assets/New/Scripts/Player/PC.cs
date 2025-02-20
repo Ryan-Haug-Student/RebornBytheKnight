@@ -15,6 +15,13 @@ public class PC : MonoBehaviour
 
     public float damage;
     public float attackCooldown; //max value of 2, 
+    public float critChance;
+
+    public float health;
+    public float maxHealth;
+    public float armor;
+
+    public int currentStage;
 
     [Header("Bools")]
     public bool canDash = true;
@@ -73,6 +80,13 @@ public class PC : MonoBehaviour
 
         damage = 1;
         attackCooldown = 1.5f;
+        critChance = 0;
+
+        health = 5;
+        maxHealth = 5;
+        armor = 0;
+
+        currentStage = 1;
     }
 
     // begin control functions here -------------
