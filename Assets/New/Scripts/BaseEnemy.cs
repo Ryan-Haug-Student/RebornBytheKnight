@@ -33,10 +33,11 @@ public class BaseEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        SpriteHandler();
+        Move();
     }
 
-    //-------------------------------------------funcs needed, sprite handling, take damage, move, die, reward dropped,
+    //-------------------------------------------funcs needed move, reward dropped,
 
     protected void SpriteHandler()
     {
@@ -50,14 +51,27 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == PC.Instance.hitBox.name)
         {
             Debug.Log(gameObject.name + " took damage");
             health -= PC.Instance.damage - armor;
+
+            if (this.health <= 0)
+                Destroy(gameObject);
         }
     }
 
+    protected void Move()
+    {
+        float distFromPlayer = Vector3.Distance(gameObject.transform.position, pathingPoint.transform.position);
 
+        if (distFromPlayer > maxDistFromPoint)
+        {
+            Vector2 direction = (pathingPoint.transform.position - gameObject.transform.position) * Time.deltaTime;
+
+            rb.velocity = direction.normalized * moveSpeed;
+        }
+    }
 }
