@@ -14,6 +14,9 @@ public class SwordGuy : BaseEnemy
     {
         Move();
         SpriteHandler();
+
+        if (canAttack && distFromPlayer < 1f)
+            Attack();
     }
 
     void SetStats()
@@ -30,5 +33,20 @@ public class SwordGuy : BaseEnemy
 
         damage = 1 * difficultyMul;
         attackCooldown = 2 - (difficultyMul * .25f);
+        canAttack = true;
+    }
+
+    void Attack()
+    {
+        Debug.Log(gameObject + " attacked");
+
+        canAttack = false;
+        PC.Instance.health -= damage;
+
+        Invoke("ResetAttack", attackCooldown);
+    }
+    void ResetAttack()
+    {
+        canAttack = true;
     }
 }

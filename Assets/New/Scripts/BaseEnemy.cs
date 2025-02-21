@@ -15,6 +15,7 @@ public class BaseEnemy : MonoBehaviour
 
     public float damage;
     public float attackCooldown;
+    public bool canAttack = true;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
