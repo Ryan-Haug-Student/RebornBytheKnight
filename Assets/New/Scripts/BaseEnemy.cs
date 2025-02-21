@@ -37,8 +37,6 @@ public class BaseEnemy : MonoBehaviour
         Move();
     }
 
-    //-------------------------------------------funcs needed move, reward dropped,
-
     protected void SpriteHandler()
     {
         if (rb.velocityX > 0)
@@ -73,5 +71,13 @@ public class BaseEnemy : MonoBehaviour
 
             rb.velocity = direction.normalized * moveSpeed;
         }
+    }
+
+    protected void DropReward()
+    {
+        //create random number
+        //check if random number is less than a certian number, the higher the number the greater the chance, multiply by (current stage * .5)
+        //if number is smaller than chance
+        //create new random to choose which power up to drop
     }
 }
