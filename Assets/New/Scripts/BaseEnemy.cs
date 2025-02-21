@@ -11,6 +11,7 @@ public class BaseEnemy : MonoBehaviour
     public GameObject pathingPoint;
     public float moveSpeed;
     public float maxDistFromPoint;
+    public float distFromPlayer;
 
     public float damage;
     public float attackCooldown;
@@ -40,13 +41,9 @@ public class BaseEnemy : MonoBehaviour
     protected void SpriteHandler()
     {
         if (rb.velocityX > 0)
-        {
             spriteRenderer.flipX = false;
-        }
         else if (rb.velocityX < 0)
-        {
             spriteRenderer.flipX = true;
-        }
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
@@ -57,13 +54,13 @@ public class BaseEnemy : MonoBehaviour
             health -= PC.Instance.damage - armor;
 
             if (this.health <= 0)
-                Destroy(gameObject);
+                DropReward();
         }
     }
 
     protected void Move()
     {
-        float distFromPlayer = Vector3.Distance(gameObject.transform.position, pathingPoint.transform.position);
+        distFromPlayer = Vector3.Distance(gameObject.transform.position, pathingPoint.transform.position);
 
         if (distFromPlayer > maxDistFromPoint)
         {
@@ -79,5 +76,7 @@ public class BaseEnemy : MonoBehaviour
         //check if random number is less than a certian number, the higher the number the greater the chance, multiply by (current stage * .5)
         //if number is smaller than chance
         //create new random to choose which power up to drop
+
+        Destroy(gameObject);
     }
 }

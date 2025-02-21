@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 311515589}
   - component: {fileID: 311515588}
-  - component: {fileID: 311515587}
+  - component: {fileID: 311515592}
   - component: {fileID: 311515590}
   - component: {fileID: 311515591}
   m_Layer: 0
@@ -356,25 +356,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &311515587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311515586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013821e8f07b62941871722450161e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  armor: 0
-  pathingPoint: {fileID: 0}
-  moveSpeed: 0
-  maxDistFromPoint: 0
-  damage: 0
-  attackCooldown: 0
 --- !u!212 &311515588
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -515,6 +496,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &311515592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311515586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5310e943990cf0446bcaa7fa3d3b86a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  armor: 0
+  pathingPoint: {fileID: 0}
+  moveSpeed: 0
+  maxDistFromPoint: 0
+  distFromPlayer: 0
+  damage: 0
+  attackCooldown: 0
 --- !u!1 &405801537
 GameObject:
   m_ObjectHideFlags: 0
