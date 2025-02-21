@@ -73,7 +73,7 @@ public class PC : MonoBehaviour
         isFirstLoad = false;
 
         //set stats to defaults
-        moveSpeed = 3;
+        moveSpeed = 2.5f;
 
         dashStrength = 12;
         dashCooldown = 4;

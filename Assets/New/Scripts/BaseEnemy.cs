@@ -32,12 +32,6 @@ public class BaseEnemy : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    void FixedUpdate()
-    {
-        SpriteHandler();
-        Move();
-    }
-
     protected void SpriteHandler()
     {
         if (rb.velocityX > 0)

@@ -6,11 +6,23 @@ public class SwordGuy : BaseEnemy
 {
     private void Awake()
     {
-        //calculate difficulty based on current round on a exponential curve
-        float difficultyMul = (PC.Instance.currentStage * 0.25f);
-        difficultyMul *= difficultyMul; //squared || when stage = 1, diffculty is .25 -> 2 = 1, 3 = 2.25, 4 = 4, 5 = 6.25
+        Invoke("SetStats", 0.05f);
+    }
 
-        health = 3 * difficultyMul;
+    // Update is called once per frame
+    void Update()
+    {
+        Move();
+        SpriteHandler();
+    }
+
+    void SetStats()
+    {
+        //calculate difficulty based on current round on a exponential curve
+        float difficultyMul = (PC.Instance.currentStage * 0.5f);
+        difficultyMul *= difficultyMul; //squared
+
+        health = 10 * difficultyMul;
         armor = 0;
 
         moveSpeed = 2 * difficultyMul;
@@ -18,11 +30,5 @@ public class SwordGuy : BaseEnemy
 
         damage = 1 * difficultyMul;
         attackCooldown = 2 - (difficultyMul * .25f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
