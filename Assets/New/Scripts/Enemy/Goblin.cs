@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordGuy : BaseEnemy
+public class Goblin : BaseEnemy
 {
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class SwordGuy : BaseEnemy
         Move();
         SpriteHandler();
 
-        if (canAttack && distFromPlayer < 2f)
+        if (canAttack && distFromPlayer < 1f)
             Attack();
     }
 
@@ -25,14 +25,14 @@ public class SwordGuy : BaseEnemy
         float difficultyMul = (PC.Instance.currentStage * 0.5f);
         difficultyMul *= difficultyMul; //squared
 
-        health = 10 * difficultyMul;
+        health = 5 * difficultyMul;
         armor = 0;
 
-        moveSpeed = 2 * difficultyMul;
-        maxDistFromPoint = 1;
+        moveSpeed = 4 * difficultyMul;
+        maxDistFromPoint = 0;
 
-        damage = 1 * difficultyMul;
-        attackCooldown = 2 - (difficultyMul * .25f);
+        damage = .5f * difficultyMul;
+        attackCooldown = 1.25f - (difficultyMul * .25f);
         canAttack = true;
     }
 

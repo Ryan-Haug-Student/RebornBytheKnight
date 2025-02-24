@@ -55,14 +55,11 @@ public class BaseEnemy : MonoBehaviour
 
     protected void Move()
     {
-        distFromPlayer = Vector3.Distance(gameObject.transform.position, pathingPoint.transform.position);
+        distFromPlayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
-        if (distFromPlayer > maxDistFromPoint)
-        {
             Vector2 direction = (pathingPoint.transform.position - gameObject.transform.position) * Time.deltaTime;
 
             rb.velocity = direction.normalized * moveSpeed;
-        }
     }
 
     protected void DropReward()
