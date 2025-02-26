@@ -7,10 +7,14 @@ public class BasePowerUp : MonoBehaviour
 {
     public Rarity rarity;
 
+    private void Start()
+    {
+        for (int i = 0; i < 10; i++) { ChooseRarity(); }
+    }
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.T))
-            ChooseRarity();
+        
     }
 
     void ChooseRarity()
