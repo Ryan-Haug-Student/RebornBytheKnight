@@ -6,7 +6,7 @@ public class SwordGuy : BaseEnemy
 {
     private void Awake()
     {
-        Invoke("SetStats", 0.05f);
+        Invoke("SetStats", 0.01f);
     }
 
     // Update is called once per frame
@@ -15,14 +15,14 @@ public class SwordGuy : BaseEnemy
         Move();
         SpriteHandler();
 
-        if (canAttack && distFromPlayer < 2f)
+        if (canAttack && distFromPlayer < 1.5f)
             Attack();
     }
 
     void SetStats()
     {
         //calculate difficulty based on current round on a exponential curve
-        float difficultyMul = (PC.Instance.currentStage * 0.5f);
+        float difficultyMul = (PC.Instance.currentStage * 0.33f);
         difficultyMul *= difficultyMul; //squared
 
         health = 10 * difficultyMul;
