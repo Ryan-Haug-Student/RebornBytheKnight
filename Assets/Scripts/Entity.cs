@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    Rigidbody rb;
-    SpriteRenderer sr;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
 
     [Header("Health")]
     public int health;
@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
         maxHealth = health;
