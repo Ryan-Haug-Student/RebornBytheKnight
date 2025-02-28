@@ -68,6 +68,10 @@ public class PlayerController : Entity
         canDash = true;
     }
 
+    private IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(1);
+    }
 
     private void DirectionControl()
     {
