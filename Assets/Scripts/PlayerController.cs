@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Entity
 {
@@ -8,18 +11,24 @@ public class PlayerController : Entity
 
     [Header("Movement")]
     public int moveSpeed = 3;
-    public float dashStrength = 4;
+    public float dashStrength = 6;
     public float dashCooldown = 2;
     public bool canDash = true;
     private bool isDashing;
+
+    [Header("Misc")]
+    [SerializeField] MoveDirection moveDirection;
+    private GameObject croshair;
 
     void Start()
     {
         //ensure only one player persists accross scenes
         if (PC == null)
-            PC = this;
+        { PC = this; DontDestroyOnLoad(this); }
         else
             Destroy(gameObject);
+
+        croshair = GameObject.Find("Croshair");
     }
 
     protected override void Update()
@@ -28,6 +37,7 @@ public class PlayerController : Entity
         base.Update(); 
 
         Move();
+        DirectionControl();
     }
 
     private void Move()
@@ -51,10 +61,46 @@ public class PlayerController : Entity
         canDash = false;
         isDashing = true;
 
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(.1f);
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+
+    private void DirectionControl()
+    {
+        // Get raw input (-1, 0, or 1 for both axes)
+        int h = (int)Input.GetAxisRaw("Horizontal");
+        int v = (int)Input.GetAxisRaw("Vertical");
+
+        moveDirection = (h, v) switch
+        {
+            (0, 1) => MoveDirection.UP,
+            (1, 1) => MoveDirection.UPRIGHT,
+            (1, 0) => MoveDirection.RIGHT,
+            (1, -1) => MoveDirection.DOWNRIGHT,
+            (0, -1) => MoveDirection.DOWN,
+            (-1, -1) => MoveDirection.DOWNLEFT,
+            (-1, 0) => MoveDirection.LEFT,
+            (-1, 1) => MoveDirection.UPLEFT,
+            _ => MoveDirection.STATIC
+        };
+
+        // Update croshair position
+        croshair.transform.position = transform.position + new Vector3(h * 0.8f, v * 0.8f, 0).normalized;
+    }
+    private enum MoveDirection 
+    {
+        STATIC,
+        UP,
+        UPRIGHT,
+        RIGHT,
+        DOWNRIGHT,
+        DOWN,
+        DOWNLEFT,
+        LEFT,
+        UPLEFT
     }
 }
