@@ -43,6 +43,8 @@ public class PlayerController : Entity
             rb.velocity = direction * moveSpeed;
         else
             rb.velocity = direction * moveSpeed * dashStrength;
+
+        direction = Vector2.zero;
     }
     private IEnumerator Dash()
     {
