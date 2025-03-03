@@ -8,16 +8,10 @@ public class Entity : MonoBehaviour
     protected Rigidbody2D rb;
     protected SpriteRenderer sr;
 
-    [Header("Health")]
-    public int health;
-    public int maxHealth;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
-        maxHealth = health;
     }
 
     protected virtual void Update()
@@ -33,17 +27,4 @@ public class Entity : MonoBehaviour
             sr.flipX = true;
     }
 
-    protected void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-            Die();
-    }
-
-    protected virtual void Die() //virtual to be overriden by player to show stats and end run
-    {
-        print(gameObject + "Died");
-        Destroy(gameObject);
-    }
 }

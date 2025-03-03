@@ -5,6 +5,10 @@ public class PlayerController : Entity
 {
     public static PlayerController instance { get; private set; }
 
+    [Header("health")]
+    public int health = 100;
+    public int maxHealth = 100;
+
     [Header("Movement")]
     public int moveSpeed = 3;
     public float dashStrength = 6;
@@ -17,16 +21,17 @@ public class PlayerController : Entity
     public float attackCooldown = 2;
     public bool canAttack = true;
 
+    [Header("Game Stats")]
+    public int score;
+    public int stage;
+
     [Header("Misc")]
     [SerializeField] MoveDirection moveDirection;
-    [SerializeField] private GameObject hitBox;
+    [SerializeField] public GameObject hitBox;
     private GameObject croshair;
 
     void Start()
     {
-        health = 100;
-        maxHealth = 100;
-
         //ensure only one player persists accross scenes
         if (instance == null)
         { instance = this; DontDestroyOnLoad(this); }

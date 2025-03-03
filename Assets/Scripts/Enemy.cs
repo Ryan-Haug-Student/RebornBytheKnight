@@ -6,29 +6,33 @@ using UnityEngine.UIElements;
 
 public class Enemy : Entity
 {
-    [Header("Other Stats")]
+    [Header("Stats")]
+    public float health;
     public float moveSpeed;
     public int damage;
     public float attackCooldown;
     public bool canAttack;
 
-    protected override void Update()
-    {
-        base.Update();
-    }
+    public bool dropsPowerUp;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == PlayerController.instance.gameObject)
-        { TakeDamage(PlayerController.instance.damage); }
+        if (collision.gameObject == PlayerController.instance.hitBox)
+            health -= PlayerController.instance.damage;
+
+        if (health <= 0)
+        {
+            PlayerController.instance.score += Random.Range(1 * PlayerController.instance.stage, 100 * PlayerController.instance.stage);
+
+            if (dropsPowerUp)
+                DropPowerUp();
+            else
+                Destroy(gameObject);
+
+        }
     }
 
-    private void damagePlayer()
-    {
-        PlayerController.instance.health -= damage;
-    }
-
-    private void dropPowerUp()
+    private void DropPowerUp()
     {
         int rv = Random.Range(1, 101);
         GameObject PTD;// power up to drop
@@ -55,5 +59,6 @@ public class Enemy : Entity
         }
 
         Instantiate(PTD);
+        Destroy(gameObject);
     }
 }
