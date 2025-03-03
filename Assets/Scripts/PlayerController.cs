@@ -53,6 +53,9 @@ public class PlayerController : Entity
 
         if (Input.GetKeyDown(KeyCode.Space) && canAttack) 
             StartCoroutine(Attack());
+
+        if (health <= 0)
+            Die();
     }
 
     private void Move()
@@ -93,6 +96,11 @@ public class PlayerController : Entity
 
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void DirectionControl()
