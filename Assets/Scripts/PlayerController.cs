@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : Entity
 {
@@ -16,8 +12,14 @@ public class PlayerController : Entity
     public bool canDash = true;
     private bool isDashing;
 
+    [Header("Attack")]
+    public int damage = 10;
+    public float attackCooldown = 2;
+    public bool canAttack = true;
+
     [Header("Misc")]
     [SerializeField] MoveDirection moveDirection;
+    [SerializeField] private GameObject hitBox;
     private GameObject croshair;
 
     void Start()
@@ -29,6 +31,8 @@ public class PlayerController : Entity
             Destroy(gameObject);
 
         croshair = GameObject.Find("Croshair");
+
+        hitBox.SetActive(false);
     }
 
     protected override void Update()
@@ -38,6 +42,9 @@ public class PlayerController : Entity
 
         Move();
         DirectionControl();
+
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack) 
+            StartCoroutine(Attack());
     }
 
     private void Move()
@@ -70,7 +77,14 @@ public class PlayerController : Entity
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1);
+        canAttack = false;
+        hitBox.SetActive(true);
+        
+        yield return new WaitForSeconds(.1f);
+        hitBox.SetActive(false);
+
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     private void DirectionControl()
@@ -94,6 +108,7 @@ public class PlayerController : Entity
 
         // Update croshair position
         croshair.transform.position = transform.position + new Vector3(h * 0.8f, v * 0.8f, 0).normalized;
+        hitBox.transform.rotation = Quaternion.Euler(0, 0, ((int)moveDirection - 1) * 45);
     }
     private enum MoveDirection 
     {
