@@ -33,7 +33,7 @@ public class Entity : MonoBehaviour
             sr.flipX = true;
     }
 
-    public void TakeDamage(int damage)
+    protected void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -41,7 +41,7 @@ public class Entity : MonoBehaviour
             Die();
     }
 
-    public virtual void Die() //virtual to be overriden by player to show stats and end run
+    protected virtual void Die() //virtual to be overriden by player to show stats and end run
     {
         print(gameObject + "Died");
         Destroy(gameObject);
