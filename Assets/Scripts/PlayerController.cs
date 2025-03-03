@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : Entity
 {
-    public PlayerController PC { get; private set; }
+    public static PlayerController instance { get; private set; }
 
     [Header("Movement")]
     public int moveSpeed = 3;
@@ -24,9 +24,12 @@ public class PlayerController : Entity
 
     void Start()
     {
+        health = 100;
+        maxHealth = 100;
+
         //ensure only one player persists accross scenes
-        if (PC == null)
-        { PC = this; DontDestroyOnLoad(this); }
+        if (instance == null)
+        { instance = this; DontDestroyOnLoad(this); }
         else
             Destroy(gameObject);
 
