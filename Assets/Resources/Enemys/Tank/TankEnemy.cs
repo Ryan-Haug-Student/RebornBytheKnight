@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordEnemy : Enemy
+using System.Collections;
+using System.Collections.Generic;
+
+public class TankEnemy : Enemy
 {
     public float attackDistance;
     private LineRenderer lineRenderer; // Reference to the LineRenderer component
 
     private void Start()
     {
-        health = 30;
-        moveSpeed = 1.5f;
+        health = 50;
+        moveSpeed = 1f;
         canMove = true;
 
-        damage = 10;
-        attackCooldown = 2;
+        damage = 25;
+        attackCooldown = 3;
         canAttack = true;
 
-        attackDistance = 1.4f;
+        attackDistance = 2f;
 
         // Get the LineRenderer component attached to this GameObject
         lineRenderer = GetComponent<LineRenderer>();
@@ -58,8 +59,8 @@ public class SwordEnemy : Enemy
         canAttack = false;
         lineRenderer.startColor = Color.red; lineRenderer.endColor = Color.red;
 
-        //attack after 4/10ths a seconds
-        yield return new WaitForSeconds(.4f);
+        //attack after 1 second
+        yield return new WaitForSeconds(1f);
         lineRenderer.startColor = Color.green; lineRenderer.endColor = Color.green;
         if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) < attackDistance)
             PlayerController.instance.health -= damage;

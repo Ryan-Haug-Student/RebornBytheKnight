@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordEnemy : Enemy
+public class GoblinEnemy : Enemy
 {
     public float attackDistance;
     private LineRenderer lineRenderer; // Reference to the LineRenderer component
 
     private void Start()
     {
-        health = 30;
-        moveSpeed = 1.5f;
+        health = 20;
+        moveSpeed = 2.3f;
         canMove = true;
 
-        damage = 10;
-        attackCooldown = 2;
+        damage = 5;
+        attackCooldown = 1;
         canAttack = true;
 
-        attackDistance = 1.4f;
+        attackDistance = 1f;
 
         // Get the LineRenderer component attached to this GameObject
         lineRenderer = GetComponent<LineRenderer>();
@@ -41,38 +41,24 @@ public class SwordEnemy : Enemy
     {
         Vector2 direction = (PlayerController.instance.transform.position - transform.position).normalized;
 
-        if (canMove)
-        {
-            rb.velocity = direction * moveSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
+        rb.velocity = direction * moveSpeed;
     }
 
     private IEnumerator Attack()
     {
-        //start attack warning
-        canMove = false;
+        //do the attack and indicate via red line
         canAttack = false;
+        PlayerController.instance.health -= damage;
         lineRenderer.startColor = Color.red; lineRenderer.endColor = Color.red;
 
-        //attack after 4/10ths a seconds
-        yield return new WaitForSeconds(.4f);
-        lineRenderer.startColor = Color.green; lineRenderer.endColor = Color.green;
-        if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) < attackDistance)
-            PlayerController.instance.health -= damage;
-
-        //start attack cooldown
-        yield return new WaitForSeconds(.05f);
+        //make line grey after indicating attack to indicate cooldown
+        yield return new WaitForSeconds(0.05f);
         lineRenderer.startColor = Color.grey; lineRenderer.endColor = Color.grey;
-        canMove = true;
-
-        //ready to attack
+        
+        //reset
         yield return new WaitForSeconds(attackCooldown);
-        lineRenderer.startColor = Color.white; lineRenderer.endColor = Color.white;
         canAttack = true;
+        lineRenderer.startColor = Color.white; lineRenderer.endColor = Color.white;
     }
 
     private void UpdateAttackLine()

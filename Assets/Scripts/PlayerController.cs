@@ -12,7 +12,7 @@ public class PlayerController : Entity
     [Header("Movement")]
     public int moveSpeed = 3;
     public float dashStrength = 6;
-    public float dashCooldown = 2;
+    public float dashCooldown = 1;
     public bool canDash = true;
     private bool isDashing;
 
@@ -101,6 +101,8 @@ public class PlayerController : Entity
 
     private void Die()
     {
+        Time.timeScale = 0;
+
         Destroy(gameObject);
         print("player died");
     }
