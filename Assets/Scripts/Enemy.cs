@@ -9,6 +9,8 @@ public class Enemy : Entity
     [Header("Stats")]
     public float health;
     public float moveSpeed;
+    public bool canMove;
+
     public int damage;
     public float attackCooldown;
     public bool canAttack;

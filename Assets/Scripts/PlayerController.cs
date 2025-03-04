@@ -49,7 +49,8 @@ public class PlayerController : Entity
         base.Update(); 
 
         Move();
-        DirectionControl();
+        if (hitBox.activeSelf == false)
+            DirectionControl();
 
         if (Input.GetKeyDown(KeyCode.Space) && canAttack) 
             StartCoroutine(Attack());
