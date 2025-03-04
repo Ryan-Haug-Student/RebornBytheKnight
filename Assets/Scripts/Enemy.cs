@@ -15,7 +15,7 @@ public class Enemy : Entity
 
     public bool dropsPowerUp;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == PlayerController.instance.hitBox)
             health -= PlayerController.instance.damage;
@@ -24,7 +24,7 @@ public class Enemy : Entity
         {
             PlayerController.instance.score += Random.Range(1 * PlayerController.instance.stage, 100 * PlayerController.instance.stage);
 
-            if (dropsPowerUp)
+            if (Random.Range(1, 10) <= PlayerController.instance.stage) // check to drop powerup, current stage out of 10 chance
                 DropPowerUp();
             else
                 Destroy(gameObject);

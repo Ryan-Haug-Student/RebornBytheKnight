@@ -101,6 +101,7 @@ public class PlayerController : Entity
     private void Die()
     {
         Destroy(gameObject);
+        print("player died");
     }
 
     private void DirectionControl()
