@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7534521098002058658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.77, y: 0.02, z: 0}
+  m_LocalPosition: {x: 2.77, y: 1.61, z: 0}
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,6 +107,7 @@ MonoBehaviour:
   attackCooldown: 0
   canAttack: 0
   dropsPowerUp: 0
+  powerUp: {fileID: 7549502154135547526, guid: 023f34e786d970741bad17c856536e9f, type: 3}
   attackDistance: 0
 --- !u!61 &3197710235022715511
 BoxCollider2D:

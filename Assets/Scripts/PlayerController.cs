@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Entity
 {
@@ -12,7 +13,7 @@ public class PlayerController : Entity
     [Header("Movement")]
     public int moveSpeed = 3;
     public float dashStrength = 6;
-    public float dashCooldown = 1;
+    public float dashCooldown = 2;
     public bool canDash = true;
     private bool isDashing;
 
@@ -24,6 +25,7 @@ public class PlayerController : Entity
     [Header("Game Stats")]
     public int score;
     public int stage = 1;
+    public bool stageOver = false;
 
     [Header("Misc")]
     [SerializeField] MoveDirection moveDirection;
@@ -57,6 +59,8 @@ public class PlayerController : Entity
 
         if (health <= 0)
             Die();
+
+        Mathf.Clamp(health, 0, maxHealth);
     }
 
     private void Move()
@@ -105,6 +109,8 @@ public class PlayerController : Entity
 
         Destroy(gameObject);
         print("player died");
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void DirectionControl()

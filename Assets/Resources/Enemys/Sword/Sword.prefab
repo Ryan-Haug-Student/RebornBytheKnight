@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7113183664047077909}
   - component: {fileID: 3899923417340796857}
   m_Layer: 0
-  m_Name: SwordEnemy
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8344894245402424651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 5.0199323, y: 2.8643355, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,6 +107,7 @@ MonoBehaviour:
   attackCooldown: 0
   canAttack: 0
   dropsPowerUp: 0
+  powerUp: {fileID: 7549502154135547526, guid: 023f34e786d970741bad17c856536e9f, type: 3}
   attackDistance: 0
 --- !u!61 &2548763616807876940
 BoxCollider2D:

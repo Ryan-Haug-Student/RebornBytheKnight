@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5480757, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.4696951, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   attackCooldown: 0
   canAttack: 0
   dropsPowerUp: 0
+  powerUp: {fileID: 7549502154135547526, guid: 023f34e786d970741bad17c856536e9f, type: 3}
   zone: {fileID: 4909618178378135951, guid: 463153fc54147624dbc02e6b5c2a07e7, type: 3}
 --- !u!50 &6927404708756455960
 Rigidbody2D:

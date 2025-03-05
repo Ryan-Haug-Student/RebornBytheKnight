@@ -29,7 +29,6 @@ public class GoblinEnemy : Enemy
         base.Update();
 
         Move();
-
         if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) < attackDistance && canAttack)
             StartCoroutine("Attack");
 

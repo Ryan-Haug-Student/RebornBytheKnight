@@ -8,7 +8,7 @@ public class Director : MonoBehaviour
     public int[] costs = new int[4];
 
     [Header("Level Stats")]
-    public int availbleCreds = 100;
+    public int availbleCreds = 50;
     public bool levelOver = false;
     public int stage = 1;
 
@@ -24,13 +24,14 @@ public class Director : MonoBehaviour
 
     private void Start()
     {
-        stage = 4;
-        availbleCreds = Mathf.RoundToInt(availbleCreds * stage / 3f); // Use 3f to force floating-point division
         Invoke("StartLevel", 4);
     }
 
     private void StartLevel()
     {
+        stage = PlayerController.instance.stage;
+        availbleCreds = Mathf.RoundToInt(availbleCreds * stage / 3f); // Use 3f to force floating-point division
+
         canSpawn = true;
         enemyType = Random.Range(0, enemys.Length);
         quantity = Random.Range(1, 4 * (stage / 2));
@@ -39,9 +40,7 @@ public class Director : MonoBehaviour
     private void Update()
     {
         if (!levelOver && canSpawn && !isWaveActive)
-        {
             StartCoroutine(StartWave());
-        }
     }
 
     private IEnumerator StartWave()
@@ -81,7 +80,7 @@ public class Director : MonoBehaviour
                 if (!spawned)
                 {
                     print("Not enough credits left, level over");
-                    levelOver = true;
+                    PlayerController.instance.stageOver = true;
                     break;
                 }
             }
