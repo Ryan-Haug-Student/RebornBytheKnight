@@ -4,12 +4,12 @@ using UnityEngine;
 public class RangedEnemy : Enemy
 {
     public GameObject arrow;
-    public float arrowSpeed = 7f;
+    public float arrowSpeed = 6f;
 
     void Start()
     {
         health = 30;
-        moveSpeed = 0.8f;
+        moveSpeed = 0.6f;
         canMove = true;
         attackCooldown = 2.5f;
         canAttack = true;

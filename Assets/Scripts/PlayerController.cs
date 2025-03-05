@@ -23,7 +23,7 @@ public class PlayerController : Entity
 
     [Header("Game Stats")]
     public int score;
-    public int stage;
+    public int stage = 1;
 
     [Header("Misc")]
     [SerializeField] MoveDirection moveDirection;
