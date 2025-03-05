@@ -9,7 +9,8 @@ public class RangedEnemy : Enemy
     void Start()
     {
         health = 30;
-        moveSpeed = 1.2f;
+        moveSpeed = 0.8f;
+        canMove = true;
         attackCooldown = 2.5f;
         canAttack = true;
     }
@@ -21,6 +22,8 @@ public class RangedEnemy : Enemy
         // Check if the player is within attack range and the enemy can attack
         if (canAttack)
             StartCoroutine(Attack());
+
+        Move();
     }
 
     private IEnumerator Attack()
@@ -47,6 +50,9 @@ public class RangedEnemy : Enemy
     {
         Vector2 direction = (PlayerController.instance.transform.position - transform.position).normalized;
 
-
+        if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) > 5)
+            rb.velocity = direction * moveSpeed;
+        else
+            rb.velocity = direction * -moveSpeed;
     }
 }
