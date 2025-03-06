@@ -58,35 +58,35 @@ public class PowerUp : MonoBehaviour
 
                 case 3: // Affects moveSpeed
                     if (rarity == 1)
-                        PlayerController.instance.moveSpeed += 1;
+                        PlayerController.instance.moveSpeed += 0.5f;
                     else if (rarity == 2)
-                        PlayerController.instance.moveSpeed += 2;
+                        PlayerController.instance.moveSpeed += 1;
                     else if (rarity == 3)
-                        PlayerController.instance.moveSpeed += 3;
+                        PlayerController.instance.moveSpeed += 2;
                     else
-                        PlayerController.instance.moveSpeed += 5;
+                        PlayerController.instance.moveSpeed += 3;
                     break;
 
                 case 4: // Affects dashStrength
                     if (rarity == 1)
-                        PlayerController.instance.dashStrength += 1;
-                    else if (rarity == 2)
                         PlayerController.instance.dashStrength += 2;
-                    else if (rarity == 3)
+                    else if (rarity == 2)
                         PlayerController.instance.dashStrength += 3;
+                    else if (rarity == 3)
+                        PlayerController.instance.dashStrength += 4;
                     else
-                        PlayerController.instance.dashStrength += 5;
+                        PlayerController.instance.dashStrength += 6;
                     break;
 
                 case 5: // Affects dashCooldown
                     if (rarity == 1)
-                        PlayerController.instance.dashCooldown -= 0.2f;
+                        PlayerController.instance.dashCooldown *= 0.95f;
                     else if (rarity == 2)
-                        PlayerController.instance.dashCooldown -= 0.4f;
+                        PlayerController.instance.dashCooldown *= 0.8f;
                     else if (rarity == 3)
-                        PlayerController.instance.dashCooldown -= 0.6f;
+                        PlayerController.instance.dashCooldown *= 0.7f;
                     else
-                        PlayerController.instance.dashCooldown -= 1.0f;
+                        PlayerController.instance.dashCooldown *= 0.55f;
                     break;
 
                 case 6: // Affects canDash
@@ -96,24 +96,24 @@ public class PowerUp : MonoBehaviour
 
                 case 7: // Affects damage
                     if (rarity == 1)
-                        PlayerController.instance.damage += 5;
+                        PlayerController.instance.damage += 3;
                     else if (rarity == 2)
-                        PlayerController.instance.damage += 10;
+                        PlayerController.instance.damage += 5;
                     else if (rarity == 3)
-                        PlayerController.instance.damage += 15;
+                        PlayerController.instance.damage += 10;
                     else
-                        PlayerController.instance.damage += 20;
+                        PlayerController.instance.damage += 15;
                     break;
 
                 case 8: // Affects attackCooldown
                     if (rarity == 1)
-                        PlayerController.instance.attackCooldown -= 0.2f;
+                        PlayerController.instance.attackCooldown *= 0.9f;
                     else if (rarity == 2)
-                        PlayerController.instance.attackCooldown -= 0.4f;
-                    else if (rarity == 3)
-                        PlayerController.instance.attackCooldown -= 0.6f;
+                        PlayerController.instance.attackCooldown *= 0.85f;
+                    else if (rarity == 3)   
+                        PlayerController.instance.attackCooldown *= 0.65f;
                     else
-                        PlayerController.instance.attackCooldown -= 1.0f;
+                        PlayerController.instance.attackCooldown *= .5f;
                     break;
 
                 default:

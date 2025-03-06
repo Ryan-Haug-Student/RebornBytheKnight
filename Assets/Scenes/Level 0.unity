@@ -7247,7 +7247,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   moveSpeed: 3
-  dashStrength: 4
+  dashStrength: 6
   dashCooldown: 1.5
   canDash: 1
   damage: 10

@@ -11,8 +11,8 @@ public class PlayerController : Entity
     public int maxHealth = 100;
 
     [Header("Movement")]
-    public int moveSpeed = 3;
-    public float dashStrength = 6;
+    public float moveSpeed = 3;
+    public float dashStrength = 10;
     public float dashCooldown = 2;
     public bool canDash = true;
     private bool isDashing;
@@ -54,7 +54,7 @@ public class PlayerController : Entity
         if (hitBox.activeSelf == false)
             DirectionControl();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack) 
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack && moveDirection != MoveDirection.STATIC) 
             StartCoroutine(Attack());
 
         if (health <= 0)
@@ -75,7 +75,7 @@ public class PlayerController : Entity
         if (!isDashing)
             rb.velocity = direction * moveSpeed;
         else
-            rb.velocity = direction * moveSpeed * dashStrength;
+            rb.velocity = direction * (moveSpeed + dashStrength);
 
         direction = Vector2.zero;
     }
@@ -103,13 +103,14 @@ public class PlayerController : Entity
         canAttack = true;
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
         Time.timeScale = 0;
 
         Destroy(gameObject);
         print("player died");
 
+        yield return new WaitForSecondsRealtime(5);
         SceneManager.LoadScene("MainMenu");
     }
 

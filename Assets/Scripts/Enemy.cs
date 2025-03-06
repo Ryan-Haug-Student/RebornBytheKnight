@@ -28,7 +28,7 @@ public class Enemy : Entity
         {
             PlayerController.instance.score += Random.Range(1 * PlayerController.instance.stage, 100 * PlayerController.instance.stage);
 
-            if (Random.Range(1, 10) <= PlayerController.instance.stage) // check to drop powerup, current stage out of 10 chance
+            if (Random.Range(1, 10) <=  1 + (PlayerController.instance.stage / 1.75)) // check to drop powerup, current stage out of 10 chance
                 PowerUp();
             else
                 Destroy(gameObject);
@@ -40,6 +40,7 @@ public class Enemy : Entity
     {
         print("dropped powerup");
         Instantiate(powerUp, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void DropPowerUp()
