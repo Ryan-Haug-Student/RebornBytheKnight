@@ -59,8 +59,6 @@ public class PlayerController : Entity
 
         if (health <= 0)
             Die();
-
-        Mathf.Clamp(health, 0, maxHealth);
     }
 
     private void Move()
@@ -103,15 +101,14 @@ public class PlayerController : Entity
         canAttack = true;
     }
 
-    private IEnumerator Die()
+    private void Die()
     {
         Time.timeScale = 0;
 
-        Destroy(gameObject);
         print("player died");
 
-        yield return new WaitForSecondsRealtime(5);
         SceneManager.LoadScene("MainMenu");
+        Destroy(gameObject);
     }
 
     private void DirectionControl()
