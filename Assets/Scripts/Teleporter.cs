@@ -8,12 +8,21 @@ public class Teleporter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(PlayerController.instance.transform.position, transform.position) < 1 && PlayerController.instance.stageOver)
         {
-            int rnd = Random.Range(1, 6);
             PlayerController.instance.stageOver = false;
             PlayerController.instance.stage += 1;
 
             PlayerController.instance.transform.position = Vector3.zero;
-            SceneManager.LoadScene("Level " + rnd);
+
+            if (PlayerController.instance.stage % 5 != 0)
+            {
+                int rnd = Random.Range(1, 6);
+                SceneManager.LoadScene("Level " + rnd);
+            }
+            else
+            {
+                int rnd = Random.Range(1, 3);
+                SceneManager.LoadScene("Boss " + rnd);
+            }
         }
     }
 }

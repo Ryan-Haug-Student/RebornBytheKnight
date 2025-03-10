@@ -31,6 +31,7 @@ public class PlayerController : Entity
     [SerializeField] MoveDirection moveDirection;
     [SerializeField] public GameObject hitBox;
     private GameObject croshair;
+    public Vector2 direction;
 
     void Start()
     {
@@ -63,7 +64,7 @@ public class PlayerController : Entity
 
     private void Move()
     {
-        Vector2 direction;
+        
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         //direction *= Time.deltaTime;
 

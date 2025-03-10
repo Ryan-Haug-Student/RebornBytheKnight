@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwordEnemy : Enemy
 {
     public float attackDistance;
-    private LineRenderer lineRenderer; // Reference to the LineRenderer component
+    protected LineRenderer lineRenderer; // Reference to the LineRenderer component
 
     private void Start()
     {
@@ -44,10 +44,6 @@ public class SwordEnemy : Enemy
         if (canMove)
         {
             rb.velocity = direction * moveSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
         }
     }
 

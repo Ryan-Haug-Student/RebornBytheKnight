@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -18,7 +19,7 @@ public class Enemy : Entity
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == PlayerController.instance.hitBox)
-            health -= PlayerController.instance.damage;
+        { health -= PlayerController.instance.damage; StartCoroutine(Knockback()); }
 
         if (health <= 0)
         {
@@ -37,6 +38,15 @@ public class Enemy : Entity
         print("dropped powerup");
         Instantiate(powerUp, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    protected IEnumerator Knockback()
+    {
+        canMove = false;
+        rb.velocity = PlayerController.instance.direction * -30;
+
+        yield return new WaitForSeconds(0.1f);
+        canMove = true;
     }
 
     private void DropPowerUp()

@@ -1,16 +1,15 @@
-using UnityEngine;
-
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class TankEnemy : Enemy
+public class MeleeBoss : Enemy
 {
     public float attackDistance;
-    private LineRenderer lineRenderer; // Reference to the LineRenderer component
+    protected LineRenderer lineRenderer; // Reference to the LineRenderer component
 
     private void Start()
     {
-        health = 50;
+        health = 150;
         moveSpeed = 1f;
         canMove = true;
 
@@ -18,7 +17,7 @@ public class TankEnemy : Enemy
         attackCooldown = 3;
         canAttack = true;
 
-        attackDistance = 2f;
+        attackDistance = 4f;
 
         // Get the LineRenderer component attached to this GameObject
         lineRenderer = GetComponent<LineRenderer>();
@@ -29,8 +28,7 @@ public class TankEnemy : Enemy
     {
         base.Update();
 
-        if (canMove)
-            Move();
+        Move();
 
         if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) < attackDistance && canAttack)
             StartCoroutine("Attack");
@@ -47,6 +45,10 @@ public class TankEnemy : Enemy
         {
             rb.velocity = direction * moveSpeed;
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private IEnumerator Attack()
@@ -56,7 +58,7 @@ public class TankEnemy : Enemy
         canAttack = false;
         lineRenderer.startColor = Color.red; lineRenderer.endColor = Color.red;
 
-        //attack after 1 second
+        //attack after a second
         yield return new WaitForSeconds(1f);
         lineRenderer.startColor = Color.green; lineRenderer.endColor = Color.green;
         if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) < attackDistance)

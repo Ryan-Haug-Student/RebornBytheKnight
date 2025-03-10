@@ -23,9 +23,6 @@ public class MageEnemy : Enemy
 
         if (canAttack)
             StartCoroutine(Attack());
-
-        //set velocity to zero to avoid sliding around when pushed
-        rb.velocity = Vector3.zero;
     }
 
     private IEnumerator Attack()
