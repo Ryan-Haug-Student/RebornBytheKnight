@@ -43,7 +43,7 @@ public class Enemy : Entity
     protected IEnumerator Knockback()
     {
         canMove = false;
-        rb.velocity = PlayerController.instance.direction * -30;
+        rb.velocity = (PlayerController.instance.transform.position - transform.position).normalized * -5;
 
         yield return new WaitForSeconds(0.1f);
         canMove = true;

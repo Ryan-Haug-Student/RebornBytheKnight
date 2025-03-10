@@ -55,7 +55,7 @@ public class PlayerController : Entity
         if (hitBox.activeSelf == false)
             DirectionControl();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack && moveDirection != MoveDirection.STATIC) 
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack) 
             StartCoroutine(Attack());
 
         if (health <= 0)
@@ -64,7 +64,6 @@ public class PlayerController : Entity
 
     private void Move()
     {
-        
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         //direction *= Time.deltaTime;
 
@@ -132,8 +131,11 @@ public class PlayerController : Entity
         };
 
         // Update croshair position
-        croshair.transform.position = transform.position + new Vector3(h * 0.8f, v * 0.8f, 0).normalized;
-        hitBox.transform.rotation = Quaternion.Euler(0, 0, ((int)moveDirection - 1) * 45);
+        if (moveDirection != MoveDirection.STATIC)
+        {
+            croshair.transform.position = transform.position + new Vector3(h * 0.8f, v * 0.8f, 0).normalized;
+            hitBox.transform.rotation = Quaternion.Euler(0, 0, ((int)moveDirection - 1) * 45);
+        }
     }
     private enum MoveDirection 
     {
