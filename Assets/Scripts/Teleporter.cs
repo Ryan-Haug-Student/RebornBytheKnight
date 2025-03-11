@@ -3,26 +3,44 @@ using UnityEngine.SceneManagement;
 
 public class Teleporter : MonoBehaviour
 {
+    public Sprite activated;
+    public bool readyToTeleport;
+
+    public SpriteRenderer sr;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(PlayerController.instance.transform.position, transform.position) < 1 && PlayerController.instance.stageOver)
+        if (PlayerController.instance.stageOver && !readyToTeleport)
+        { 
+            readyToTeleport = true; 
+            sr.sprite = activated; 
+        }
+
+        if (readyToTeleport)
+            if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, PlayerController.instance.transform.position) < 2)
+                Teleport();
+    }
+
+    private void Teleport()
+    {
+        //set variables
+        PlayerController.instance.stageOver = false;
+        readyToTeleport = false;
+        PlayerController.instance.stage += 1;
+
+        //reset player position to center
+        PlayerController.instance.transform.position = Vector3.zero;
+
+        //decide if player needs to go to boss or regular stage and go to there
+        if (PlayerController.instance.stage % 5 != 0)
         {
-            PlayerController.instance.stageOver = false;
-            PlayerController.instance.stage += 1;
-
-            PlayerController.instance.transform.position = Vector3.zero;
-
-            if (PlayerController.instance.stage % 5 != 0)
-            {
-                int rnd = Random.Range(1, 6);
-                SceneManager.LoadScene("Level " + rnd);
-            }
-            else
-            {
-                int rnd = Random.Range(1, 3);
-                SceneManager.LoadScene("Boss " + rnd);
-            }
+            int rnd = Random.Range(1, 6);
+            SceneManager.LoadScene("Level " + rnd);
+        }
+        else
+        {
+            int rnd = Random.Range(1, 3);
+            SceneManager.LoadScene("Boss " + rnd);
         }
     }
 }

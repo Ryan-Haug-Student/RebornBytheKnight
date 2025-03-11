@@ -48,34 +48,4 @@ public class Enemy : Entity
         yield return new WaitForSeconds(0.1f);
         canMove = true;
     }
-
-    private void DropPowerUp()
-    {
-        int rv = Random.Range(1, 101);
-        GameObject PTD;// power up to drop
-
-        if (rv <= 50)
-        {
-            PTD = PowerUpHolder.commonPowerUps[Random.Range(0, PowerUpHolder.commonPowerUps.Length)];
-            print("common PU dropped");
-        }
-        else if (rv <= 75)
-        {
-            PTD = PowerUpHolder.uncommonPowerUps[Random.Range(0, PowerUpHolder.uncommonPowerUps.Length)];
-            print("uncommon PU dropped");
-        }
-        else if (rv <= 92)
-        {
-            PTD = PowerUpHolder.rarePowerUps[Random.Range(0, PowerUpHolder.rarePowerUps.Length)];
-            print("rare PU dropped");
-        }
-        else
-        {
-            PTD = PowerUpHolder.mythicalPowerUps[Random.Range(0, PowerUpHolder.mythicalPowerUps.Length)];
-            print("myth PU dropped");
-        }
-
-        Instantiate(PTD);
-        Destroy(gameObject);
-    }
 }
