@@ -39,7 +39,8 @@ public class Teleporter : MonoBehaviour
         }
         else
         {
-            int rnd = Random.Range(1, 3);
+            //random feature is currently pointless due to only 1 boss
+            int rnd = Random.Range(1, 2);
             SceneManager.LoadScene("Boss " + rnd);
         }
     }
