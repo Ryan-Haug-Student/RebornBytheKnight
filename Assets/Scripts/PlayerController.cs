@@ -7,8 +7,8 @@ public class PlayerController : Entity
     public static PlayerController instance { get; private set; }
 
     [Header("health")]
-    public int health = 100;
-    public int maxHealth = 100;
+    public float health = 100;
+    public float maxHealth = 100;
 
     [Header("Movement")]
     public float moveSpeed = 3;
