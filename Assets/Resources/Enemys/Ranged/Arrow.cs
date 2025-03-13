@@ -18,7 +18,7 @@ public class Arrow : Entity
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == PlayerController.instance.gameObject)
-            PlayerController.instance.health -= 15;
+            PlayerController.instance.health -= 8;
 
         Destroy(gameObject);
     }
