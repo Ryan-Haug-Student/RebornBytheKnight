@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -85,6 +86,13 @@ public class UIController : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
+    }
+
+    public void Quit()
+    {
+        Destroy(PlayerController.instance.gameObject);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
