@@ -10,27 +10,38 @@ public class UIController : MonoBehaviour
     public Image aBar;
     public Image dBar;
 
+    public GameObject stats;
+
+    public bool paused;
+    public GameObject pauseMenu;
+
     private bool triggered;
     private bool triggered2;
 
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        //health bar
         healthFill.fillAmount = PlayerController.instance.health / PlayerController.instance.maxHealth;
 
+        // manage cooldown bars here
         if (!PlayerController.instance.canAttack && !triggered)
             StartCoroutine(AttackBar());
         if (!PlayerController.instance.canDash && !triggered2)
             StartCoroutine(DashBar());
 
+        //stats panel
+        if (Input.GetKey(KeyCode.Tab))
+                stats.SetActive(true);
+        else
+            stats.SetActive(false);
+
+        //pause menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+            CheckForPause();
     }
 
-    IEnumerator AttackBar()
+    private IEnumerator AttackBar()
     {
         triggered = true;
         aBar.fillAmount = 1f;
@@ -44,7 +55,7 @@ public class UIController : MonoBehaviour
         triggered = false;
     }
 
-    IEnumerator DashBar()
+    private IEnumerator DashBar()
     {
         triggered2 = true;
         dBar.fillAmount = 1f;
@@ -57,4 +68,23 @@ public class UIController : MonoBehaviour
 
         triggered2 = false;
     }
+
+    public void CheckForPause()
+    {
+        if (!paused)
+        {
+            paused = true;
+
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            paused = false;
+
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
 }
