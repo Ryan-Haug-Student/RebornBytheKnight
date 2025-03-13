@@ -9,7 +9,7 @@ public class RangedEnemy : Enemy
     void Start()
     {
         health = 30;
-        moveSpeed = 0.6f;
+        moveSpeed = 0.8f;
         canMove = true;
         attackCooldown = 2.5f;
         canAttack = true;
