@@ -7,19 +7,19 @@ public class PlayerController : Entity
     public static PlayerController instance { get; private set; }
 
     [Header("health")]
-    public float health = 100;
-    public float maxHealth = 100;
+    public float health;
+    public float maxHealth;
 
     [Header("Movement")]
-    public float moveSpeed = 3;
-    public float dashStrength = 10;
-    public float dashCooldown = 2;
+    public float moveSpeed;
+    public float dashStrength;
+    public float dashCooldown;
     public bool canDash = true;
     private bool isDashing;
 
     [Header("Attack")]
-    public int damage = 10;
-    public float attackCooldown = 2;
+    public int damage;
+    public float attackCooldown;
     public bool canAttack = true;
 
     [Header("Game Stats")]
