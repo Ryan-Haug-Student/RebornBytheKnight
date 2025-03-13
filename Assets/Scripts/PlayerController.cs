@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,8 +32,10 @@ public class PlayerController : Entity
     [Header("Misc")]
     [SerializeField] MoveDirection moveDirection;
     [SerializeField] public GameObject hitBox;
-    private GameObject croshair;
+    public GameObject Slash;
     public Vector2 direction;
+    private Animator animator;
+    private GameObject croshair;
 
     void Start()
     {
@@ -42,6 +46,7 @@ public class PlayerController : Entity
             Destroy(gameObject);
 
         croshair = GameObject.Find("Croshair");
+        animator = GetComponent<Animator>();
 
         hitBox.SetActive(false);
     }
@@ -135,7 +140,21 @@ public class PlayerController : Entity
         {
             croshair.transform.position = transform.position + new Vector3(h * 0.8f, v * 0.8f, 0).normalized;
             hitBox.transform.rotation = Quaternion.Euler(0, 0, ((int)moveDirection - 1) * 45);
+
+            animator.SetBool("Moving", true);
         }
+        else { animator.SetBool("Moving", false); }
+
+        // Update slash rotation
+        if (moveDirection == MoveDirection.UPRIGHT || moveDirection == MoveDirection.DOWNLEFT)
+            Slash.transform.localRotation = Quaternion.Euler(0, 0, -90);
+        else if (moveDirection == MoveDirection.DOWNRIGHT || moveDirection == MoveDirection.UPLEFT)
+            Slash.transform.localRotation = Quaternion.Euler(0, 0, 90);
+        else if (moveDirection == MoveDirection.RIGHT || moveDirection == MoveDirection.LEFT)
+            Slash.transform.localRotation = Quaternion.Euler(0, 0, 180);
+        else
+            Slash.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
     }
     private enum MoveDirection 
     {

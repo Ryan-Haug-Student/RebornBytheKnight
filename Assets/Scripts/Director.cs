@@ -54,13 +54,11 @@ public class Director : MonoBehaviour
             // Randomize enemyType for each spawn
             enemyType = Random.Range(0, enemys.Length);
             Transform spawnLoc = spwanPos[Random.Range(0, spwanPos.Length)];
-            print("Chose enemy, quantity, and spawn pos");
 
             if (costs[enemyType] <= availbleCreds)
             {
                 Instantiate(enemys[enemyType], spawnLoc.position, spawnLoc.rotation);
                 availbleCreds -= costs[enemyType];
-                print("Spawned chosen enemy");
             }
             else
             {
@@ -72,7 +70,6 @@ public class Director : MonoBehaviour
                         Instantiate(enemys[i], spawnLoc.position, spawnLoc.rotation);
                         availbleCreds -= costs[i];
                         spawned = true;
-                        print("Found and spawned affordable enemy");
                         break;
                     }
                 }

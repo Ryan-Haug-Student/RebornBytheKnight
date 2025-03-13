@@ -47,7 +47,7 @@ public class UIController : MonoBehaviour
         triggered = true;
         aBar.fillAmount = 1f;
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 105; i++)
         {
             aBar.fillAmount -= 0.01f;
             yield return new WaitForSeconds(PlayerController.instance.attackCooldown / 100);
@@ -61,7 +61,7 @@ public class UIController : MonoBehaviour
         triggered2 = true;
         dBar.fillAmount = 1f;
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 102; i++)
         {
             dBar.fillAmount -= 0.01f;
             yield return new WaitForSeconds(PlayerController.instance.dashCooldown / 100);
