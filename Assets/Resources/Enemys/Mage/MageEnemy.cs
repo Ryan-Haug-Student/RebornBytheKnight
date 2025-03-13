@@ -6,6 +6,11 @@ public class MageEnemy : Enemy
 {
     public GameObject zone;
 
+    public bool casting;
+
+    [SerializeField] private Sprite inactive;
+    [SerializeField] private Sprite active;
+
     void Start()
     {
         health = 40;
@@ -28,6 +33,7 @@ public class MageEnemy : Enemy
     private IEnumerator Attack()
     {
         canAttack = false;
+        sr.sprite = active;
 
         float rndX = Random.Range(-7, 7);
         float rndY = Random.Range(-3, 3);
@@ -36,7 +42,10 @@ public class MageEnemy : Enemy
 
         Instantiate(zone, spawnPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(1);
+        sr.sprite = inactive;
+
+        yield return new WaitForSeconds(attackCooldown - 1);
         canAttack = true;
     }
 }
