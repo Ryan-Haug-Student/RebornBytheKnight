@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,9 +21,14 @@ public class UIController : MonoBehaviour
     private bool triggered;
     private bool triggered2;
 
+    public TMP_Text score;
+    public TMP_Text stats_txt;
+
 
     void Update()
     {
+        PlayerController pc = PlayerController.instance;
+
         //health bar
         healthFill.fillAmount = PlayerController.instance.health / PlayerController.instance.maxHealth;
 
@@ -40,6 +47,17 @@ public class UIController : MonoBehaviour
         //pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
             CheckForPause();
+
+        //stats
+        score.text = $"Score: {PlayerController.instance.score}";
+        stats_txt.text = 
+            $"Health: {pc.health} / {pc.maxHealth} \n" +
+            $"Speed: {pc.moveSpeed} \n" +
+            $"DashStrength: {pc.dashStrength}, Dash Cooldown: {pc.dashCooldown} \n" +
+            $"Damage: {pc.damage}, Attack Cooldown: {pc.attackCooldown} \n" +
+            $"Stage: {pc.stage}";
+
+
     }
 
     private IEnumerator AttackBar()
