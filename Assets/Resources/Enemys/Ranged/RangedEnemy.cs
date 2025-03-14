@@ -20,7 +20,7 @@ public class RangedEnemy : Enemy
         base.Update();
 
         // Check if the player is within attack range and the enemy can attack
-        if (canAttack && Vector3.Distance(PlayerController.instance.transform.position, transform.position) > 5)
+        if (canAttack && Vector3.Distance(PlayerController.instance.transform.position, transform.position) > 2)
             StartCoroutine(Attack());
 
         Move();

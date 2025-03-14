@@ -9,16 +9,6 @@ public class MeleeBoss : Enemy
 
     private void Start()
     {
-        health = 150;
-        moveSpeed = 1f;
-        canMove = true;
-
-        damage = 25;
-        attackCooldown = 3;
-        canAttack = true;
-
-        attackDistance = 4f;
-
         // Get the LineRenderer component attached to this GameObject
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;

@@ -30,11 +30,11 @@ public class Director : MonoBehaviour
     private void StartLevel()
     {
         stage = PlayerController.instance.stage;
-        availbleCreds = Mathf.RoundToInt(availbleCreds * stage / 3f); // Use 3f to force floating-point division
+        availbleCreds = Mathf.RoundToInt(availbleCreds * stage / 4f); // Use 3f to force floating-point division
 
         canSpawn = true;
         enemyType = Random.Range(0, enemys.Length);
-        quantity = Random.Range(1, 4 * (stage / 2));
+        quantity = Random.Range(1, 3 * (stage / 3));
     }
 
     private void Update()
@@ -82,8 +82,7 @@ public class Director : MonoBehaviour
                 }
             }
 
-            float ttns = Random.Range(0.3f, 4 / stage);
-            print("Chose time to next spawn");
+            float ttns = Random.Range(0.3f, 3 / stage * .5f);
             yield return new WaitForSeconds(ttns);
         }
 
