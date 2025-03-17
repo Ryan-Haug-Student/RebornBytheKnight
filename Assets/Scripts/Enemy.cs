@@ -28,7 +28,7 @@ public class Enemy : Entity
         {
             PlayerController.instance.score += Random.Range(1 * PlayerController.instance.stage, 100 * PlayerController.instance.stage);
 
-            if (Random.Range(1, 10) <= 1 + (PlayerController.instance.stage / 1.75)) // check to drop powerup, current stage out of 10 chance
+            if (Random.Range(1, 10) <= 2 + (PlayerController.instance.stage / 1.75)) // check to drop powerup, current stage out of 10 chance
                 PowerUp();
             else if (Random.Range(1, 5) <= 1)
                 HealthPack();
