@@ -55,6 +55,7 @@ public class TankEnemy : Enemy
         canMove = false;
         canAttack = false;
         lineRenderer.startColor = Color.red; lineRenderer.endColor = Color.red;
+        StartCoroutine(AttackWarning(1f));
 
         //attack after 1 second
         yield return new WaitForSeconds(1f);

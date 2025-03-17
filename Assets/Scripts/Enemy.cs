@@ -14,7 +14,9 @@ public class Enemy : Entity
 
     public bool dropsPowerUp;
 
+    public GameObject warning;
     public GameObject powerUp;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,9 +45,21 @@ public class Enemy : Entity
     protected IEnumerator Knockback()
     {
         canMove = false;
-        rb.velocity = (PlayerController.instance.transform.position - transform.position).normalized * -5;
+        rb.velocity = (PlayerController.instance.transform.position - transform.position).normalized * -8;
 
         yield return new WaitForSeconds(0.1f);
         canMove = true;
+    }
+
+    protected IEnumerator AttackWarning(float time)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            warning.SetActive(true);
+            yield return new WaitForSeconds(time * .1f);
+
+            warning.SetActive(false);
+            yield return new WaitForSeconds(time * .1f);
+        }
     }
 }

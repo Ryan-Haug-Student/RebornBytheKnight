@@ -53,6 +53,7 @@ public class SwordEnemy : Enemy
         canMove = false;
         canAttack = false;
         lineRenderer.startColor = Color.red; lineRenderer.endColor = Color.red;
+        StartCoroutine(AttackWarning(.4f));
 
         //attack after 4/10ths a seconds
         yield return new WaitForSeconds(.4f);

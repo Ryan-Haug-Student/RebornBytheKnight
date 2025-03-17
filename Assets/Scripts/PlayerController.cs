@@ -65,6 +65,9 @@ public class PlayerController : Entity
 
         if (health <= 0)
             Die();
+
+        //keep health updated to not go over max
+        Mathf.Clamp(health, 0, maxHealth);
     }
 
     private void Move()
