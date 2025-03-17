@@ -195,6 +195,7 @@ MonoBehaviour:
   dropsPowerUp: 0
   warning: {fileID: 5701809656850547898}
   powerUp: {fileID: 7549502154135547526, guid: 023f34e786d970741bad17c856536e9f, type: 3}
+  healthPack: {fileID: 7227749582135016221, guid: 46d654ee45d64ab42b8e000e890885bd, type: 3}
   attackDistance: 0
 --- !u!61 &2548763616807876940
 BoxCollider2D:

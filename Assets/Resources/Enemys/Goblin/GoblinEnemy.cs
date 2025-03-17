@@ -10,10 +10,10 @@ public class GoblinEnemy : Enemy
     private void Start()
     {
         health = 20;
-        moveSpeed = 2.3f;
+        moveSpeed = 2.5f;
         canMove = true;
 
-        damage = 5;
+        damage = 3;
         attackCooldown = 1;
         canAttack = true;
 

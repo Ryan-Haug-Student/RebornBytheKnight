@@ -106,7 +106,9 @@ MonoBehaviour:
   attackCooldown: 0
   canAttack: 0
   dropsPowerUp: 0
+  warning: {fileID: 0}
   powerUp: {fileID: 7549502154135547526, guid: 023f34e786d970741bad17c856536e9f, type: 3}
+  healthPack: {fileID: 7227749582135016221, guid: 46d654ee45d64ab42b8e000e890885bd, type: 3}
   zone: {fileID: 4909618178378135951, guid: 463153fc54147624dbc02e6b5c2a07e7, type: 3}
   casting: 0
   inactive: {fileID: 2971653748508199937, guid: a2140fd80e368244d809c68d113eb070, type: 3}
