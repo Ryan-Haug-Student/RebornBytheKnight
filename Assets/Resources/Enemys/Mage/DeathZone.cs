@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeathZone : MonoBehaviour
 {
     public int DPT = 1; //damage per tick
-    public float tr = 0.4f; //tick rate
+    public float tr = 0.6f; //tick rate
 
     public float lifeSpan = 5;
 

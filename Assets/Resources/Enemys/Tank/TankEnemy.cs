@@ -10,11 +10,11 @@ public class TankEnemy : Enemy
 
     private void Start()
     {
-        health = 50;
+        health = 40;
         moveSpeed = 1f;
         canMove = true;
 
-        damage = 25;
+        damage = 20;
         attackCooldown = 3;
         canAttack = true;
 
