@@ -8794,7 +8794,7 @@ MonoBehaviour:
   dashStrength: 10
   dashCooldown: 2
   canDash: 1
-  damage: 15
+  damage: 10
   attackCooldown: 1
   canAttack: 1
   score: 0

@@ -34,7 +34,7 @@ public class Director : MonoBehaviour
 
         canSpawn = true;
         enemyType = Random.Range(0, enemys.Length);
-        quantity = Random.Range(1, 3 * (stage / 3));
+        quantity = Random.Range(1, 4 * (stage / 3));
     }
 
     private void Update()
