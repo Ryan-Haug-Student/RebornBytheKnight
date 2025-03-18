@@ -11,7 +11,8 @@ public class healthPack : MonoBehaviour
             if (PlayerController.instance.health <= PlayerController.instance.maxHealth - 25)
                 PlayerController.instance.health += 25;
             else
-                PlayerController.instance.health = 100;
+                PlayerController.instance.health = PlayerController.instance.maxHealth;
+            
             Destroy(gameObject); 
         }
     }
