@@ -11,9 +11,12 @@ public class DeathZone : MonoBehaviour
 
     public bool canAttack = true;
 
+    public ParticleSystem ps;
+
     private void Start()
     {
         Invoke("Die", lifeSpan);
+        ps.Play();
     }
 
     private void Die()
