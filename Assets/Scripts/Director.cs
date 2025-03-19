@@ -34,7 +34,6 @@ public class Director : MonoBehaviour
 
         canSpawn = true;
         enemyType = Random.Range(0, enemys.Length);
-        quantity = Random.Range(1, 4 * (stage / 3));
     }
 
     private void Update()
@@ -48,6 +47,7 @@ public class Director : MonoBehaviour
         isWaveActive = true;
         canSpawn = false;
         print("Started wave");
+        quantity = Random.Range(1, 4 * (stage / 3));
 
         for (int s = 0; s < quantity; s++)
         {
